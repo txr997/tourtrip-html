@@ -1,0 +1,328 @@
+@use '../abstracts/variables' as *;
+
+
+/*
+    tt-package-1-start
+*/
+.tt-package-1 {
+    // 1920 design, 852 high: the picture 668 from the top, 41, the text 56, 31, the button 56; the card is 532 high and ends with the button. Under 1200 the card follows the picture
+    &-area {
+        position: relative;
+        background: #fff;
+
+        @media #{$lg,$md,$sm,$xs} {
+            padding-bottom: 80px;
+        }
+
+        @media #{$xs} {
+            padding-bottom: 64px;
+        }
+    }
+
+    // the grey foot of the section starts 349 down (41%)
+    &-bg {
+        position: absolute;
+        top: 40.96%;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: var(--tt-clr-bg-2);
+
+        @media #{$lg,$md,$sm,$xs} {
+            top: 34%;
+        }
+    }
+
+    // the white brush edge (2142 x 170), turned over: its torn edge ends 23px under the start of the grey
+    &-wave {
+        position: absolute;
+        top: 0;
+        left: -5.83%;
+        width: 111.56%;
+        aspect-ratio: 2142 / 170;
+        background: #fff;
+        -webkit-mask-size: 100% 100%;
+        mask-size: 100% 100%;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        transform: translateY(-86.47%) scaleY(-1);
+        pointer-events: none;
+
+        @media #{$md,$sm} {
+            left: -25%;
+            width: 150%;
+        }
+
+        @media #{$xs} {
+            left: -50%;
+            width: 200%;
+        }
+    }
+
+    &-wrap {
+        position: relative;
+        z-index: 1;
+    }
+
+    &-stage {
+        position: relative;
+    }
+
+    // 1401 x 668, a 24 radius; the pictures lie on each other and the active one shows
+    &-pics {
+        position: relative;
+        aspect-ratio: 1401 / 668;
+        border-radius: 24px;
+
+        @media #{$md} {
+            aspect-ratio: 16 / 10;
+        }
+
+        @media #{$xs} {
+            aspect-ratio: 4 / 3;
+            border-radius: 16px;
+        }
+    }
+
+    // the new picture fades in while it settles from 108% to its size, the old one fades out growing
+    &-pic {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transform: scale(1.08);
+        transition: opacity 0.8s ease, transform 1.6s cubic-bezier(0.18, 0.82, 0.41, 1);
+
+        &.is-active {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    // 396 wide, 73 from the right edge of the picture and 184 under it
+    &-cardbox {
+        position: absolute;
+        right: 5.21%;
+        bottom: -184px;
+        z-index: 2;
+        width: 396px;
+
+        @media #{$lg,$md,$sm,$xs} {
+            position: relative;
+            right: auto;
+            bottom: auto;
+            width: min(100%, 396px);
+            margin: -72px auto 0;
+        }
+    }
+
+    &-slider {
+        border-radius: 16px;
+    }
+
+    // the parts of a card come in one after the other when their slide is the active one (they go out together)
+    &-thumb,
+    &-stars,
+    &-name,
+    &-location,
+    &-facts,
+    &-foot {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.18, 0.82, 0.41, 1);
+
+        @media (prefers-reduced-motion: reduce) {
+            opacity: 1;
+            transform: none;
+            transition: none;
+        }
+    }
+
+    &-thumb {
+        transform: scale(0.94);
+    }
+
+    .swiper-slide-active &-thumb,
+    .swiper-slide-active &-stars,
+    .swiper-slide-active &-name,
+    .swiper-slide-active &-location,
+    .swiper-slide-active &-facts,
+    .swiper-slide-active &-foot {
+        opacity: 1;
+        transform: none;
+    }
+
+    .swiper-slide-active &-thumb {
+        transition-delay: 0.1s;
+    }
+
+    .swiper-slide-active &-stars {
+        transition-delay: 0.2s;
+    }
+
+    .swiper-slide-active &-name {
+        transition-delay: 0.26s;
+    }
+
+    .swiper-slide-active &-location {
+        transition-delay: 0.32s;
+    }
+
+    .swiper-slide-active &-facts {
+        transition-delay: 0.38s;
+    }
+
+    .swiper-slide-active &-foot {
+        transition-delay: 0.44s;
+    }
+
+    // 8 round the photo, 16 more at the sides of the text
+    &-card {
+        padding: 8px 8px 21px;
+        border-radius: 16px;
+        background: #fff;
+    }
+
+    &-thumb {
+        aspect-ratio: 380 / 253;
+        border-radius: 12px;
+    }
+
+    &-body {
+        padding: 24px 16px 0;
+    }
+
+    // the stars are 14px boxes 2 apart, the glyph 12
+    &-stars {
+        display: flex;
+        gap: 2px;
+        margin-bottom: 8px;
+    }
+
+    &-star {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 14px;
+        height: 14px;
+        font-size: 12px;
+        line-height: 1;
+        color: var(--tt-clr-pr-1);
+    }
+
+    &-location {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 8px;
+        margin-top: 8px;
+    }
+
+    &-label {
+        opacity: 0.72;
+    }
+
+    // a line on each side of the row: 19 round the first, 16 round the second
+    &-facts {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px 12px;
+        margin-top: 19px;
+        padding: 19px 0 16px;
+        border-top: 1px solid rgb(10 10 10 / 10%);
+        border-bottom: 1px solid rgb(10 10 10 / 10%);
+    }
+
+    &-fact {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    // 22, the black at 48%
+    &-fact-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+        width: 22px;
+        height: 22px;
+        font-size: 22px;
+        line-height: 1;
+        color: rgb(10 10 10 / 48%);
+    }
+
+    &-fact-text {
+        white-space: nowrap;
+    }
+
+    &-foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 16px;
+    }
+
+    &-from {
+        opacity: 0.6;
+    }
+
+    // "$120.00/" in the title face, "Per Night" small and grey
+    &-price {
+        margin: 0;
+        font-family: var(--tt-font-2);
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1.5556;
+        color: var(--tt-clr-h-1);
+    }
+
+    &-per {
+        font-family: var(--tt-font-1);
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--tt-clr-p-1);
+    }
+
+    // the arrows stand on the picture, 16 up from its foot and 19 left of the card; under 1200 the card comes 72 up over the picture, so they stand 16 over it at the right edge
+    &-nav {
+        position: absolute;
+        right: calc(5.21% + 415px);
+        bottom: 16px;
+        z-index: 2;
+        display: flex;
+        gap: 8px;
+
+        @media #{$lg,$md,$sm,$xs} {
+            right: 16px;
+            bottom: 88px;
+        }
+
+        // both are white; the one under the pointer turns black (not the orange of the other sliders)
+        .tt-arrow-btn-1:hover {
+            background: var(--tt-clr-h-1);
+            color: #fff;
+        }
+    }
+
+    // 41 under the picture, the text 31 over the button
+    &-info {
+        margin-top: 41px;
+
+        @media #{$lg,$md,$sm,$xs} {
+            margin-top: 32px;
+        }
+    }
+
+    &-desc {
+        max-width: 633px;
+    }
+
+    &-btn {
+        margin-top: 31px;
+    }
+}
+/*
+    tt-package-1-end
+*/

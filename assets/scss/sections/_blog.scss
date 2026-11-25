@@ -1,0 +1,224 @@
+@use '../abstracts/variables' as *;
+
+
+/*
+    tt-blog-1-start
+*/
+.tt-blog-1 {
+    // 1920 design, 1104 high: 132 on top, the posts 840 (three of 280), 132 below; the head 476, 124, the posts 800
+    // no overflow here: the sticky head and posts need the screen as their scroll box; --tt-blog-stick is how far from the screen edge they stand
+    &-area {
+        --tt-blog-stick: 132px;
+        padding: 132px 0;
+        background: #fff;
+
+        @media #{$xxl} {
+            --tt-blog-stick: 120px;
+            padding: 120px 0;
+        }
+
+        @media #{$xl} {
+            --tt-blog-stick: 108px;
+            padding: 108px 0;
+        }
+
+        @media #{$lg} {
+            padding: 96px 0;
+        }
+
+        @media #{$md} {
+            padding: 80px 0;
+        }
+
+        @media #{$xs} {
+            padding: 64px 0;
+        }
+    }
+
+    &-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 476fr) minmax(0, 800fr);
+        column-gap: 124px;
+        align-items: start;
+
+        @media #{$xxl} {
+            column-gap: 80px;
+        }
+
+        @media #{$xl} {
+            column-gap: 56px;
+        }
+
+        @media #{$lg,$md,$sm,$xs} {
+            grid-template-columns: minmax(0, 1fr);
+            row-gap: 48px;
+        }
+    }
+
+    // 129 from the top of the screen while the posts go by (from 1200px)
+    &-head {
+        .tt-subtitle-1 {
+            display: block;
+        }
+
+        @media (min-width: 1200px) {
+            position: sticky;
+            top: var(--tt-blog-stick);
+        }
+
+        @media #{$lg,$md,$sm,$xs} {
+            max-width: 560px;
+        }
+    }
+
+    // the line is 56 in the design, not the 54 of the title class
+    &-title {
+        margin: 12px 0 20px;
+        line-height: 1.1667;
+    }
+
+    &-btn {
+        margin-top: 32px;
+    }
+
+    // a line over the first post and one under each
+    &-list {
+        border-top: 1px solid rgb(10 10 10 / 12%);
+    }
+
+    // 280 high: 28 and 224 and 27, and the line; the first one has 1 less on top, the line of the list is that pixel.
+    // From 1200px each post is stuck 132 over the foot of the screen, so the list comes up stacked (the white of a post hides the one under it) and opens as it scrolls
+    &-card {
+        padding: 28px 0 27px;
+        border-bottom: 1px solid rgb(10 10 10 / 12%);
+        background: #fff;
+
+        @media (min-width: 1200px) {
+            position: sticky;
+            bottom: var(--tt-blog-stick);
+        }
+
+        // the picture grows inside its box when the post is under the pointer
+        &:hover .tt-blog-1-pic {
+            transform: scale(1.1);
+        }
+
+        &:first-child {
+            padding-top: 27px;
+        }
+
+        @media #{$xs} {
+            padding: 24px 0;
+
+            &:first-child {
+                padding-top: 24px;
+            }
+        }
+    }
+
+    &-row {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+
+        @media #{$xs} {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 20px;
+        }
+    }
+
+    // 328 x 224 of the 800
+    &-img {
+        position: relative;
+        flex: none;
+        width: 41%;
+        aspect-ratio: 328 / 224;
+        border-radius: 6px;
+
+        @media #{$xs} {
+            width: 100%;
+        }
+    }
+
+    &-pic {
+        position: absolute;
+        inset: 0;
+        transition: transform 0.8s cubic-bezier(0.18, 0.82, 0.41, 1);
+    }
+
+    &-body {
+        flex: 1;
+        min-width: 0;
+    }
+
+    &-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    // 27 high with a line: the grey one is the date, the blue one the topic
+    &-tag {
+        display: inline-flex;
+        align-items: center;
+        height: 27px;
+        padding: 0 10px;
+        border: 1px solid var(--tt-clr-p-1);
+        border-radius: 4px;
+        line-height: 1;
+        white-space: nowrap;
+
+        &.is-blue {
+            border-color: var(--tt-clr-sd-1);
+        }
+    }
+
+    // 24 on a 30 line, 20 under the tags; the blue is for the pointer
+    &-name {
+        margin: 20px 0 0;
+        line-height: 1.25;
+
+        a {
+            transition: var(--tt-cube-1);
+
+            &:hover {
+                color: var(--tt-clr-sd-1);
+            }
+        }
+    }
+
+    // 56 under the title
+    &-foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 56px;
+
+        @media #{$xs} {
+            margin-top: 24px;
+        }
+
+        .tt-link-btn-1 {
+            gap: 8px;
+        }
+    }
+
+    &-author {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        min-width: 0;
+    }
+
+    &-avatar {
+        flex: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+    }
+}
+/*
+    tt-blog-1-end
+*/

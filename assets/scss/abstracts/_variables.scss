@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,100..1000;1,100..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playball&display=swap');
+
+:root {
+  scroll-behavior: inherit;
+
+  --tt-font-1:  "DM Sans", sans-serif;
+  // the titles, the buttons and the labels
+  --tt-font-2:  "Manrope", sans-serif;
+  // the script subtitle over a section title
+  --tt-font-3:  "Playball", cursive;
+
+  // the orange of the buttons, the tags and the icons
+  --tt-clr-pr-1: #EB662B;
+  // the blue of the script subtitles and the dates
+  --tt-clr-sd-1: #015FC9;
+  // the gold, the stars
+  --tt-clr-ac-1: #BF9156;
+
+  --tt-clr-h-1: #0A0A0A;
+
+  --tt-clr-p-1: #525252;
+  --tt-clr-p-2: #868686;
+  // the faq questions
+  --tt-clr-p-3: #414141;
+
+  // the beige of the destination and the cta sections
+  --tt-clr-bg-1: #F6EFE6;
+  --tt-clr-bg-2: #F2F4F5;
+  --tt-clr-bg-3: #FFF8ED;
+  // the dark brown
+  --tt-clr-bg-4: #201306;
+  // the "View Tour" button
+  --tt-clr-bg-5: #EEE7DF;
+
+  --tt-clr-bd-1: #DAE0E3;
+  --tt-clr-bd-2: #E6E5E5;
+
+  // "Verified Traveler" and its plate
+  --tt-clr-sc-1: #0A8B3D;
+  --tt-clr-sc-2: #D7F2E1;
+
+  --tt-cube-1: all .4s cubic-bezier(.18,.82,.41,1);
+}
+
+$over: "(min-width: 1800px)";
+$xxxl: "only screen and (min-width: 1600px) and (max-width: 1799px)";
+$xxl: "only screen and (min-width: 1400px) and (max-width: 1599px)";
+$xl: "only screen and (min-width: 1200px) and (max-width: 1399px)";
+$lg: "only screen and (min-width: 992px) and (max-width: 1199px)";
+$md: "only screen and (min-width: 768px) and (max-width: 991px)";
+$sm: "only screen and (min-width: 576px) and (max-width: 767px)";
+$xs: "(max-width: 767px)";

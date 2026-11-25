@@ -1,0 +1,697 @@
+@use '../abstracts/variables' as *;
+
+/*
+    typography-start
+*/
+
+// body text 18/28; has-dark is the black at 80% of the beige sections, has-white sits on the photos
+.tt-p-1 {
+    font-family: var(--tt-font-1);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5556;
+    letter-spacing: 0.01em;
+    color: var(--tt-clr-p-1);
+    margin-bottom: 0;
+
+    &:is(.has-dark) {
+        color: rgb(10 10 10 / 80%);
+    }
+
+    &:is(.has-white) {
+        color: #fff;
+    }
+
+    @media #{$xs} {
+        font-size: 16px;
+    }
+}
+
+
+// the quote of the testimonials, Manrope 20/30
+.tt-p-2 {
+    font-family: var(--tt-font-2);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--tt-clr-p-1);
+    margin-bottom: 0;
+
+    &:is(.has-dark) {
+        color: var(--tt-clr-h-1);
+    }
+
+    @media #{$xs} {
+        font-size: 18px;
+    }
+}
+
+
+.tt-p-3 {
+    font-family: var(--tt-font-1);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--tt-clr-p-1);
+    margin-bottom: 0;
+
+    &:is(.has-medium) {
+        font-weight: 500;
+    }
+
+    &:is(.has-dark) {
+        color: var(--tt-clr-h-1);
+    }
+
+    &:is(.has-white) {
+        color: #fff;
+    }
+}
+
+
+// the small meta: the dates, the tags, the address
+.tt-p-4 {
+    font-family: var(--tt-font-1);
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 1.4667;
+    color: var(--tt-clr-p-1);
+    margin-bottom: 0;
+
+    &:is(.has-regular) {
+        font-weight: 400;
+    }
+
+    &:is(.has-orange) {
+        color: var(--tt-clr-pr-1);
+    }
+
+    &:is(.has-blue) {
+        color: var(--tt-clr-sd-1);
+    }
+
+    &:is(.has-white) {
+        color: #fff;
+    }
+}
+
+
+// "Prices From"
+.tt-p-5 {
+    font-family: var(--tt-font-1);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.4286;
+    color: var(--tt-clr-h-1);
+    margin-bottom: 0;
+}
+
+
+// the script line over a section title, blue; has-orange on the offer
+.tt-subtitle-1 {
+    display: inline-block;
+    font-family: var(--tt-font-3);
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1;
+    color: var(--tt-clr-sd-1);
+    margin-bottom: 0;
+
+    &:is(.has-orange) {
+        color: var(--tt-clr-pr-1);
+    }
+
+    @media #{$xs} {
+        font-size: 20px;
+    }
+}
+
+
+// home 1 hero title, Manrope medium 84/84; has-blue is the last line, bold
+.tt-hero-title-1 {
+    font-family: var(--tt-font-2);
+    font-weight: 500;
+    font-size: 84px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--tt-clr-h-1);
+    margin-bottom: 0;
+
+    .has-blue {
+        display: block;
+        font-weight: 700;
+        color: var(--tt-clr-sd-1);
+    }
+
+    &:is(.has-white) {
+        color: #fff;
+    }
+
+    @media #{$xxl} {
+        font-size: 72px;
+    }
+
+    @media #{$xl} {
+        font-size: 64px;
+    }
+
+    @media #{$lg} {
+        font-size: 56px;
+    }
+
+    @media #{$md} {
+        font-size: 48px;
+    }
+
+    @media #{$xs} {
+        font-size: 34px;
+    }
+
+    @media #{$sm} {
+        font-size: 44px;
+    }
+}
+
+
+// home 3 hero title, Manrope medium 80/84
+.tt-hero-title-3 {
+    font-family: var(--tt-font-2);
+    font-weight: 500;
+    font-size: 80px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--tt-clr-h-1);
+    margin-bottom: 0;
+
+    &:is(.has-white) {
+        color: #fff;
+    }
+
+    @media #{$xxl} {
+        font-size: 72px;
+    }
+
+    @media #{$xl} {
+        font-size: 64px;
+    }
+
+    @media #{$lg} {
+        font-size: 56px;
+    }
+
+    @media #{$md} {
+        font-size: 48px;
+    }
+
+    @media #{$xs} {
+        font-size: 34px;
+    }
+
+    @media #{$sm} {
+        font-size: 44px;
+    }
+}
+
+
+// the big numbers of the counters, Manrope regular 68/72
+.tt-counter-1 {
+    font-family: var(--tt-font-2);
+    font-weight: 400;
+    font-size: 68px;
+    line-height: 1.0588;
+    letter-spacing: -0.02em;
+    color: var(--tt-clr-h-1);
+    margin-bottom: 0;
+
+    &:is(.has-white) {
+        color: #fff;
+    }
+
+    @media #{$xxl} {
+        font-size: 60px;
+    }
+
+    @media #{$xl} {
+        font-size: 54px;
+    }
+
+    @media #{$lg} {
+        font-size: 48px;
+    }
+
+    @media #{$md} {
+        font-size: 44px;
+    }
+
+    @media #{$xs} {
+        font-size: 36px;
+    }
+
+    @media #{$sm} {
+        font-size: 40px;
+    }
+}
+
+
+// the cta title, Manrope bold 56/60
+.tt-cta-title-1 {
+    font-family: var(--tt-font-2);
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 1.0714;
+    letter-spacing: -0.01em;
+    color: var(--tt-clr-h-1);
+    margin-bottom: 0;
+
+    &:is(.has-white) {
+        color: #fff;
+    }
+
+    @media #{$xxl} {
+        font-size: 52px;
+    }
+
+    @media #{$xl} {
+        font-size: 48px;
+    }
+
+    @media #{$lg} {
+        font-size: 44px;
+    }
+
+    @media #{$md} {
+        font-size: 40px;
+    }
+
+    @media #{$xs} {
+        font-size: 30px;
+    }
+
+    @media #{$sm} {
+        font-size: 36px;
+    }
+}
+
+
+// the title of every section, Manrope semibold 48/54
+.tt-sec-title-1 {
+    font-family: var(--tt-font-2);
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 1.125;
+    letter-spacing: -0.02em;
+    color: var(--tt-clr-h-1);
+    margin-bottom: 0;
+
+    &:is(.has-white) {
+        color: #fff;
+    }
+
+    @media #{$xxl} {
+        font-size: 46px;
+    }
+
+    @media #{$xl} {
+        font-size: 42px;
+    }
+
+    @media #{$lg} {
+        font-size: 38px;
+    }
+
+    @media #{$md} {
+        font-size: 36px;
+    }
+
+    @media #{$xs} {
+        font-size: 28px;
+    }
+
+    @media #{$sm} {
+        font-size: 32px;
+    }
+}
+
+
+// the title of the offer, 40/44
+.tt-title-1 {
+    font-family: var(--tt-font-2);
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--tt-clr-h-1);
+    margin-bottom: 0;
+
+    &:is(.has-white) {
+        color: #fff;
+    }
+
+    @media #{$xxl} {
+        font-size: 38px;
+    }
+
+    @media #{$xl} {
+        font-size: 36px;
+    }
+
+    @media #{$lg} {
+        font-size: 34px;
+    }
+
+    @media #{$md} {
+        font-size: 32px;
+    }
+
+    @media #{$xs} {
+        font-size: 26px;
+    }
+
+    @media #{$sm} {
+        font-size: 30px;
+    }
+}
+
+
+// the title of the forms and the rating, 32/36
+.tt-title-2 {
+    font-family: var(--tt-font-2);
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 1.125;
+    color: var(--tt-clr-h-1);
+    margin-bottom: 0;
+
+    &:is(.has-white) {
+        color: #fff;
+    }
+
+    @media #{$xl} {
+        font-size: 30px;
+    }
+
+    @media #{$lg,$md} {
+        font-size: 28px;
+    }
+
+    @media #{$xs} {
+        font-size: 24px;
+    }
+
+    @media #{$sm} {
+        font-size: 26px;
+    }
+}
+
+
+// the destination cards, 28/32; has-medium is the tour cards of home 2
+.tt-title-3 {
+    font-family: var(--tt-font-2);
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 1.1429;
+    letter-spacing: -0.01em;
+    color: var(--tt-clr-h-1);
+    margin-bottom: 0;
+
+    &:is(.has-medium) {
+        font-weight: 500;
+    }
+
+    &:is(.has-white) {
+        color: #fff;
+    }
+
+    @media #{$xl} {
+        font-size: 26px;
+    }
+
+    @media #{$lg,$md} {
+        font-size: 24px;
+    }
+
+    @media #{$xs} {
+        font-size: 22px;
+    }
+}
+
+
+// the titles of the tour cards and the blog posts, 24/28; has-semibold for the blog of home 1
+.tt-title-4 {
+    font-family: var(--tt-font-2);
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.1667;
+    color: var(--tt-clr-h-1);
+    margin-bottom: 0;
+
+    &:is(.has-semibold) {
+        font-weight: 600;
+    }
+
+    &:is(.has-white) {
+        color: #fff;
+    }
+
+    @media #{$xs} {
+        font-size: 20px;
+    }
+}
+
+
+// the titles of the categories and the tour cards, 22/28
+.tt-title-5 {
+    font-family: var(--tt-font-2);
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.2727;
+    color: var(--tt-clr-h-1);
+    margin-bottom: 0;
+
+    &:is(.has-medium) {
+        font-weight: 500;
+    }
+
+    &:is(.has-white) {
+        color: #fff;
+    }
+
+    @media #{$xs} {
+        font-size: 20px;
+    }
+}
+
+
+// the names of the travelers, 20/28
+.tt-title-6 {
+    font-family: var(--tt-font-2);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.4;
+    color: var(--tt-clr-h-1);
+    margin-bottom: 0;
+
+    &:is(.has-white) {
+        color: #fff;
+    }
+
+    @media #{$xs} {
+        font-size: 18px;
+    }
+}
+
+
+// the title of the newsletter in the footer, Manrope regular 36/40
+.tt-title-7 {
+    font-family: var(--tt-font-2);
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 1.1111;
+    color: var(--tt-clr-h-1);
+    margin-bottom: 0;
+
+    &:is(.has-white) {
+        color: #fff;
+    }
+
+    @media #{$lg} {
+        font-size: 32px;
+    }
+
+    @media #{$md} {
+        font-size: 30px;
+    }
+
+    @media #{$xs} {
+        font-size: 26px;
+    }
+}
+
+
+// the orange titles of the footer columns
+.tt-label-1 {
+    font-family: var(--tt-font-2);
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1.4667;
+    color: var(--tt-clr-pr-1);
+    margin-bottom: 0;
+}
+
+
+// the label over a form field
+.tt-label-2 {
+    display: block;
+    font-family: var(--tt-font-2);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5556;
+    color: var(--tt-clr-h-1);
+    margin-bottom: 0;
+
+    &:is(.has-white) {
+        color: #fff;
+    }
+
+    @media #{$xs} {
+        font-size: 16px;
+    }
+}
+
+
+// the label of the booking card fields, Manrope 15; has-medium for its tabs
+.tt-label-3 {
+    font-family: var(--tt-font-2);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.4667;
+    color: var(--tt-clr-h-1);
+    margin-bottom: 0;
+
+    &:is(.has-medium) {
+        font-weight: 500;
+    }
+}
+
+
+// the huge bold word of the footer and the team marquee, 180 with a 130 line
+.tt-display-1 {
+    font-family: var(--tt-font-2);
+    font-weight: 700;
+    font-size: 180px;
+    line-height: 0.7222;
+    color: var(--tt-clr-h-1);
+    margin-bottom: 0;
+
+    &:is(.has-white) {
+        color: #fff;
+    }
+
+    @media #{$xxxl} {
+        font-size: 160px;
+    }
+
+    @media #{$xxl} {
+        font-size: 140px;
+    }
+
+    @media #{$xl} {
+        font-size: 120px;
+    }
+
+    @media #{$lg} {
+        font-size: 96px;
+    }
+
+    @media #{$md} {
+        font-size: 72px;
+    }
+
+    @media #{$xs} {
+        font-size: 44px;
+    }
+
+    @media #{$sm} {
+        font-size: 56px;
+    }
+}
+
+
+// the title of the gallery, 108/112
+.tt-display-2 {
+    font-family: var(--tt-font-2);
+    font-weight: 700;
+    font-size: 108px;
+    line-height: 1.037;
+    color: var(--tt-clr-h-1);
+    margin-bottom: 0;
+
+    &:is(.has-white) {
+        color: #fff;
+    }
+
+    @media #{$xxl} {
+        font-size: 96px;
+    }
+
+    @media #{$xl} {
+        font-size: 84px;
+    }
+
+    @media #{$lg} {
+        font-size: 72px;
+    }
+
+    @media #{$md} {
+        font-size: 60px;
+    }
+
+    @media #{$xs} {
+        font-size: 40px;
+    }
+
+    @media #{$sm} {
+        font-size: 48px;
+    }
+}
+
+
+// the word behind the hero image of the home 2, white at 80%
+.tt-display-3 {
+    font-family: var(--tt-font-2);
+    font-weight: 600;
+    font-size: 200px;
+    line-height: 1.32;
+    letter-spacing: -0.04em;
+    color: rgb(255 255 255 / 80%);
+    margin-bottom: 0;
+
+    @media #{$xxl} {
+        font-size: 176px;
+    }
+
+    @media #{$xl} {
+        font-size: 150px;
+    }
+
+    @media #{$lg} {
+        font-size: 120px;
+    }
+
+    @media #{$md} {
+        font-size: 96px;
+    }
+
+    @media #{$xs} {
+        font-size: 60px;
+    }
+
+    @media #{$sm} {
+        font-size: 80px;
+    }
+}
+
+
+/*
+    typography-end
+*/

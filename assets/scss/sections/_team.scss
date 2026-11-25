@@ -1,0 +1,331 @@
+@use '../abstracts/variables' as *;
+
+
+/*
+    tt-team-1-start
+*/
+.tt-team-1 {
+    // 1920 design, 1375 high: the content starts 544 down, the cards 54 above its foot (4 x 332, 24 apart, the 2nd and 4th 136 lower), 29 below the last
+    &-area {
+        position: relative;
+        padding: 544px 0 29px;
+        background: #fff;
+
+        @media #{$xxl} {
+            padding-top: 480px;
+        }
+
+        @media #{$xl} {
+            padding-top: 420px;
+        }
+
+        @media #{$lg} {
+            padding-top: 360px;
+        }
+
+        @media #{$md} {
+            padding-top: 300px;
+        }
+
+        @media #{$xs} {
+            padding: 240px 0 40px;
+        }
+    }
+
+    // the photo is 936 of the 1375 (68%); the cards stand on its foot
+    &-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 68.07%;
+
+        // dark at the foot (519 of the 936), so the white text can be read
+        &::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 55.45%;
+            background: linear-gradient(180deg, rgb(10 10 10 / 0%) 0%, #0a0a0a 100%);
+        }
+    }
+
+    // the brush edge (2142 x 215) in the grey of the section before, turned over: its torn edge ends 31px under the top
+    &-wave {
+        position: absolute;
+        top: 0;
+        left: -7.66%;
+        width: 111.56%;
+        aspect-ratio: 2142 / 215;
+        background: var(--tt-clr-bg-2);
+        -webkit-mask-size: 100% 100%;
+        mask-size: 100% 100%;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        transform: translateY(-85.58%) scaleY(-1);
+        pointer-events: none;
+
+        @media #{$md,$sm} {
+            left: -25%;
+            width: 150%;
+        }
+
+        @media #{$xs} {
+            left: -50%;
+            width: 200%;
+        }
+    }
+
+    // the big word runs along the top; the caps start 80 down (the line is 130 of the 180, they sit 4 under its top)
+    &-marquee {
+        position: absolute;
+        top: 76px;
+        right: 0;
+        left: 0;
+        overflow: hidden;
+        font-size: 0;
+        line-height: 0;
+        white-space: nowrap;
+        pointer-events: none;
+
+        @media #{$xxl} {
+            top: 64px;
+        }
+
+        @media #{$xl} {
+            top: 56px;
+        }
+
+        @media #{$lg} {
+            top: 48px;
+        }
+
+        @media #{$md} {
+            top: 40px;
+        }
+
+        @media #{$xs} {
+            top: 32px;
+        }
+    }
+
+    // white at the top, gone at 90% of the line; the foot of the line is 6% longer so the caps are whole
+    &-word {
+        display: inline-block;
+        padding: 0 0.3em 0.06em 0;
+        vertical-align: top;
+        text-transform: uppercase;
+        white-space: nowrap;
+        background: linear-gradient(180deg, #fff 0%, rgb(255 255 255 / 0%) 90%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+    }
+
+    &-wrap {
+        position: relative;
+        z-index: 2;
+    }
+
+    // 547 wide in the middle, the text 112 and the button 32 under it
+    &-content {
+        max-width: 547px;
+        margin: 0 auto;
+    }
+
+    &-desc {
+        margin-bottom: 32px;
+        font-weight: 500;
+    }
+
+    // the cards come up 54 into the content, between its button and the 3rd card there is room for both; under 1600 they follow it.
+    // All start in one row; with the scroll the 2nd and 4th go --tt-team-drop down (main.js), the room for it is under them
+    &-grid {
+        --tt-team-drop: 136px;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 24px;
+        align-items: start;
+        margin-top: -54px;
+
+        @media #{$xxl} {
+            --tt-team-drop: 120px;
+            margin-top: 48px;
+        }
+
+        @media #{$xl} {
+            --tt-team-drop: 100px;
+            margin-top: 48px;
+        }
+
+        @media #{$lg,$md,$sm} {
+            --tt-team-drop: 60px;
+            grid-template-columns: repeat(2, minmax(0, 332px));
+            justify-content: center;
+            margin-top: 48px;
+        }
+
+        @media #{$xs} {
+            --tt-team-drop: 0px;
+            grid-template-columns: minmax(0, 332px);
+            justify-content: center;
+            margin-top: 40px;
+        }
+    }
+
+    &-item:nth-child(even) {
+        padding-bottom: var(--tt-team-drop);
+    }
+
+    // 332 x 520, a capsule; everything in it is placed in % of the card. Hover (and the focus of a link in it) is the 2nd card of the design:
+    // the photo grey with a blue foot, the plate white, a glow, the four social icons on the plate
+    &-card {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 332 / 520;
+        border-radius: 999px;
+        overflow: hidden;
+        isolation: isolate;
+        transition: var(--tt-cube-1);
+
+        &:is(:hover, :focus-within) {
+            box-shadow: 0 8px 32px rgb(0 0 0 / 12%);
+
+            .tt-team-1-img {
+                filter: grayscale(1);
+            }
+
+            .tt-team-1-tint {
+                opacity: 1;
+            }
+
+            .tt-team-1-plate {
+                background: #fff;
+            }
+
+            .tt-team-1-social-item {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    }
+
+    // the plate covers the foot of the photo; not painting it there keeps a dark rim off the curved edge of the capsule
+    &-img {
+        position: absolute;
+        inset: 0;
+        clip-path: inset(0 0 15% 0);
+        transition: var(--tt-cube-1);
+    }
+
+    // the blue of the photo's foot: 189 down, 260 high, 8 wider than the card on each side
+    &-tint {
+        position: absolute;
+        top: 36.35%;
+        right: -2.4%;
+        left: -2.4%;
+        height: 50%;
+        background: linear-gradient(180deg, rgb(1 95 201 / 0%) 0%, rgb(1 95 201 / 50%) 44%, var(--tt-clr-sd-1) 100%);
+        opacity: 0;
+        transition: var(--tt-cube-1);
+    }
+
+    // an ellipse 371 x 294, 387 down and 19 wider than the card on each side; the capsule cuts it
+    &-plate {
+        position: absolute;
+        top: 74.42%;
+        left: -5.72%;
+        width: 111.75%;
+        height: 56.54%;
+        border-radius: 50%;
+        background: var(--tt-clr-bg-2);
+        transition: var(--tt-cube-1);
+    }
+
+    // 425 down, the name and the line under it 2 apart
+    &-info {
+        position: absolute;
+        top: 81.73%;
+        right: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        text-align: center;
+    }
+
+    &-name {
+        letter-spacing: -0.02em;
+        white-space: nowrap;
+    }
+
+    &-role {
+        opacity: 0.8;
+        white-space: nowrap;
+    }
+
+    // the icons stand on the arc of the plate: the outer two 363 down, the inner two 347, 61 apart
+    &-social {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+    }
+
+    &-social-item {
+        position: absolute;
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.4s cubic-bezier(0.18, 0.82, 0.41, 1), transform 0.4s cubic-bezier(0.18, 0.82, 0.41, 1);
+
+        &:nth-child(1) {
+            top: 69.81%;
+            left: 16.57%;
+        }
+
+        &:nth-child(2) {
+            top: 66.73%;
+            left: 34.94%;
+            transition-delay: 0.05s;
+        }
+
+        &:nth-child(3) {
+            top: 66.73%;
+            left: 53.31%;
+            transition-delay: 0.1s;
+        }
+
+        &:nth-child(4) {
+            top: 69.81%;
+            left: 71.69%;
+            transition-delay: 0.15s;
+        }
+    }
+
+    &-social-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 8px 32px rgb(0 0 0 / 42%), inset 0 0 6px rgb(3 96 198 / 80%);
+        font-size: 16px;
+        line-height: 1;
+        color: var(--tt-clr-sd-1);
+        pointer-events: auto;
+        transition: var(--tt-cube-1);
+
+        &:hover {
+            background: var(--tt-clr-sd-1);
+            color: #fff;
+        }
+    }
+}
+/*
+    tt-team-1-end
+*/

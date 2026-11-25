@@ -1,0 +1,265 @@
+@use '../abstracts/variables' as *;
+
+
+/*
+    tt-header-1-start
+*/
+.tt-header-1 {
+    // laid over the hero, 12px from the top: three white cards side by side, 60px high (1920 design)
+    &-area {
+        position: absolute;
+        top: 12px;
+        left: 0;
+        width: 100%;
+        z-index: 4;
+    }
+
+    // isolation keeps the lines behind the cards (z-index -1) inside the header
+    &-wrap {
+        position: relative;
+        isolation: isolate;
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+        height: 60px;
+    }
+
+    // the same card is drawn once more 6px lower behind each one: a light line over a blurred glass.
+    // The shadow of the design is one for all three: it sits under every card (z-index -2), so it never falls on the next card
+    &-logo-card,
+    &-menu-card,
+    &-action-card {
+        position: relative;
+        align-items: center;
+        border-radius: 14px;
+        background: #fff;
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            border-radius: inherit;
+            box-shadow: 0 4px 18px rgb(0 0 0 / 15%);
+            pointer-events: none;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 6px 0 -6px;
+            z-index: -1;
+            border: 1px solid rgb(0 0 0 / 12%);
+            border-radius: inherit;
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            pointer-events: none;
+        }
+    }
+
+    // the menu button and the logo, 258px wide
+    &-logo-card {
+        display: flex;
+        gap: 17px;
+        padding: 0 26px 0 14px;
+
+        @media #{$xs} {
+            gap: 12px;
+            padding: 0 14px 0 8px;
+        }
+    }
+
+    &-logo-elm {
+        display: block;
+    }
+
+    &-logo-img {
+        width: 153px;
+        height: 44px;
+
+        @media #{$xs} {
+            width: 120px;
+            height: 35px;
+        }
+    }
+
+    // takes what the other two leave, the links stay in the middle
+    &-menu-card {
+        flex: 1;
+        justify-content: center;
+        min-width: 0;
+        padding: 0 20px;
+    }
+
+    // the search and the quote button, 334px wide
+    &-action-card {
+        display: flex;
+        gap: 40px;
+        padding: 0 21px 0 20px;
+
+        @media #{$xl} {
+            gap: 24px;
+        }
+
+        // the search is the icon only from here down
+        @media #{$xl,$lg,$md,$sm,$xs} {
+            .tt-search-btn-1 .text {
+                display: none;
+            }
+        }
+
+        @media #{$xs} {
+            gap: 0;
+            padding: 0 16px;
+        }
+
+        .tt-sd-btn-1 {
+            @media (max-width: 575px) {
+                display: none;
+            }
+        }
+    }
+}
+
+.tt-main-navigation {
+    .navbar-nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 60px;
+
+        @media #{$xxl} {
+            gap: 40px;
+        }
+
+        @media #{$xl} {
+            gap: 24px;
+        }
+
+        > li {
+            position: relative;
+
+            > a {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                font-family: var(--tt-font-1);
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 1.5;
+                white-space: nowrap;
+                color: var(--tt-clr-h-1);
+                transition: var(--tt-cube-1);
+            }
+
+            // the design shows no mark for the current page, only the hover turns the text orange
+            &:hover > a {
+                color: var(--tt-clr-pr-1);
+            }
+
+            &:hover > .dropdown-menu,
+            &:focus-within > .dropdown-menu {
+                opacity: 1;
+                visibility: visible;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        // the blue corner (7px) after Home, Destinations, Pages, Tour and Blog, on the foot line of the text
+        .menu-arrow {
+            flex: none;
+            align-self: flex-end;
+            width: 7px;
+            height: 7px;
+            margin-bottom: 7px;
+            background: var(--tt-clr-sd-1);
+            clip-path: polygon(100% 0, 100% 100%, 0 100%);
+        }
+
+        // 66px under the top of the link row: just below the lines of the cards
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 24px);
+            left: 50%;
+            z-index: 100;
+            display: block;
+            min-width: 220px;
+            margin: 0;
+            padding: 12px;
+            list-style: none;
+            border: 1px solid var(--tt-clr-bd-1);
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 20px 40px rgb(0 0 0 / 12%);
+            opacity: 0;
+            visibility: hidden;
+            transform: translate(-50%, 12px);
+            transition: var(--tt-cube-1);
+
+            // keeps the hover alive over the gap between the link and the card
+            &::before {
+                content: "";
+                position: absolute;
+                top: -25px;
+                right: 0;
+                left: 0;
+                height: 25px;
+            }
+
+            li a {
+                display: block;
+                padding: 9px 14px;
+                border-radius: 8px;
+                font-family: var(--tt-font-1);
+                font-size: 16px;
+                line-height: 1.5;
+                white-space: nowrap;
+                color: var(--tt-clr-h-1);
+                transition: var(--tt-cube-1);
+
+                &:hover {
+                    background: var(--tt-clr-bg-2);
+                    color: var(--tt-clr-pr-1);
+                }
+            }
+        }
+    }
+}
+/*
+    tt-header-1-end
+*/
+
+
+.wa_sticky_header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: 400ms ease-in-out;
+    z-index: 8;
+
+
+    &:is(.wa_sticky) {
+        transform: translateY(-190%);
+
+        &:is(.wa_sticky_show) {
+            transform: translateY(0%);
+        }
+    }
+
+    &:is(.tt-header-1-area) {
+        top: 12px;
+
+        &:is(.wa_sticky_show) {
+            animation: none;
+        }
+    }
+
+
+}
+
+
+/*
+    sticky-header-css-end
+*/

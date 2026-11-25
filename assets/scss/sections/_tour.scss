@@ -1,0 +1,330 @@
+@use '../abstracts/variables' as *;
+
+
+/*
+    tt-tour-1-start
+*/
+.tt-tour-1 {
+    // 1920 design, 1976 high: 132 on top, the head 220, 48, the cards 1340 (two rows of 656, 28 apart), 48, the button 56, 132 below
+    &-area {
+        position: relative;
+        padding: 132px 0;
+        background: var(--tt-clr-bg-1);
+
+        @media #{$xxl} {
+            padding: 120px 0;
+        }
+
+        @media #{$xl} {
+            padding: 108px 0;
+        }
+
+        @media #{$lg} {
+            padding: 96px 0;
+        }
+
+        @media #{$md} {
+            padding: 80px 0;
+        }
+
+        @media #{$xs} {
+            padding: 64px 0;
+        }
+    }
+
+    // the white brush edges (2142 x 215 in the design); the top one is turned over, its torn edge ends 35px under the top, the foot one starts 39px above the foot
+    &-wave {
+        position: absolute;
+        left: -6.41%;
+        width: 111.56%;
+        aspect-ratio: 2142 / 215;
+        pointer-events: none;
+
+        &.is-top {
+            top: 0;
+            transform: translateY(-83.7%) scaleY(-1);
+        }
+
+        &.is-bottom {
+            bottom: 0;
+            transform: translateY(81.9%);
+        }
+
+        @media #{$md,$sm} {
+            left: -25%;
+            width: 150%;
+        }
+
+        @media #{$xs} {
+            left: -50%;
+            width: 200%;
+        }
+    }
+
+    // the camera and its dotted line at the top left, the mountain at the foot right
+    &-shape {
+        position: absolute;
+        pointer-events: none;
+
+        &.is-camera {
+            top: 5.21vw;
+            left: -2.19%;
+            width: 15.26%;
+            aspect-ratio: 293 / 284;
+            opacity: 0.32;
+
+            @media #{$lg,$md,$sm,$xs} {
+                display: none;
+            }
+        }
+
+        &.is-mountain {
+            right: -1.3%;
+            bottom: 3px;
+            width: 18.28%;
+            aspect-ratio: 1;
+
+            @media #{$md,$sm,$xs} {
+                display: none;
+            }
+        }
+    }
+
+    &-wrap {
+        position: relative;
+        z-index: 1;
+    }
+
+    &-head {
+        max-width: 748px;
+        margin: 0 auto;
+        text-align: center;
+
+        .tt-subtitle-1 {
+            display: block;
+        }
+    }
+
+    // 678 wide in the design: it breaks after "With"
+    &-title {
+        max-width: 678px;
+        margin: 12px auto 20px;
+    }
+
+    &-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+        margin-top: 48px;
+
+        @media #{$xl} {
+            gap: 24px;
+        }
+
+        @media #{$lg,$md} {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        @media #{$md} {
+            gap: 20px;
+        }
+
+        @media #{$sm,$xs} {
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 40px;
+        }
+    }
+
+    // 448 x 656: the photo 8px inside, the text 32px in; --tt-tour-pad is the padding of the text inside the card padding. Hover is the glow and the blue button of the second card
+    &-card {
+        --tt-tour-pad: 24px;
+        --tt-tour-ico: 22px;
+        --tt-tour-fs: 16px;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        padding: 8px;
+        border-radius: 12px;
+        background: #fff;
+        transition: var(--tt-cube-1);
+
+        &:hover {
+            box-shadow: 0 0 48px rgb(10 10 10 / 40%);
+        }
+
+        &:hover .tt-card-btn-1 {
+            background: var(--tt-clr-sd-1);
+            color: #fff;
+        }
+
+        .tt-card-btn-1:hover {
+            background: var(--tt-clr-h-1);
+        }
+
+        @media #{$xl} {
+            --tt-tour-pad: 16px;
+            --tt-tour-ico: 20px;
+            --tt-tour-fs: 15px;
+        }
+
+        @media #{$md,$xs} {
+            --tt-tour-pad: 12px;
+            --tt-tour-ico: 18px;
+            --tt-tour-fs: 14px;
+        }
+
+        // one column, the card is wide again
+        @media #{$sm} {
+            --tt-tour-pad: 20px;
+            --tt-tour-ico: 22px;
+            --tt-tour-fs: 16px;
+        }
+    }
+
+    &-photo {
+        position: relative;
+    }
+
+    &-img {
+        width: 100%;
+        aspect-ratio: 432 / 380;
+        border-radius: 8px;
+    }
+
+    // a white pill, 16px from the corner, with a 3px white ring
+    &-rating {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 8px 12px;
+        border-radius: 170px;
+        background: #fff;
+        box-shadow: 0 0 0 3px #fff;
+    }
+
+    &-star {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+        width: 16px;
+        height: 16px;
+        font-size: 14px;
+        line-height: 1;
+        color: var(--tt-clr-pr-1);
+    }
+
+    &-score {
+        font-family: var(--tt-font-2);
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        color: var(--tt-clr-h-1);
+    }
+
+    // 29 under the photo, 24 at the foot (16 here and the 8 of the card)
+    &-body {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        padding: 29px var(--tt-tour-pad) 16px;
+    }
+
+    // the page sets a:hover to inherit, so the title turns blue here
+    &-name a {
+        transition: var(--tt-cube-1);
+
+        &:hover {
+            color: var(--tt-clr-sd-1);
+        }
+    }
+
+    &-location {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 8px;
+        margin-top: 14px;
+    }
+
+    &-label {
+        opacity: 0.72;
+    }
+
+    // a line on each side: 16 under the location, 19 and 20 round the row
+    &-facts {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px 12px;
+        margin-top: 16px;
+        padding: 19px 0 20px;
+        border-top: 1px solid rgb(10 10 10 / 10%);
+        border-bottom: 1px solid rgb(10 10 10 / 10%);
+    }
+
+    &-fact {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    // #525252 at 48%; the globe has no glyph in the icon font, it is an image
+    &-fact-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+        width: var(--tt-tour-ico);
+        height: var(--tt-tour-ico);
+        font-size: var(--tt-tour-ico);
+        line-height: 1;
+        color: rgb(82 82 82 / 48%);
+    }
+
+    &-fact-text {
+        font-size: var(--tt-tour-fs);
+        white-space: nowrap;
+    }
+
+    &-foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: auto;
+        padding-top: 20px;
+    }
+
+    &-from {
+        opacity: 0.6;
+    }
+
+    &-amount {
+        margin: 0;
+        font-family: var(--tt-font-2);
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1.5556;
+        color: var(--tt-clr-h-1);
+    }
+
+    &-more {
+        display: flex;
+        justify-content: center;
+        margin-top: 48px;
+
+        @media #{$xs} {
+            margin-top: 32px;
+        }
+    }
+}
+/*
+    tt-tour-1-end
+*/

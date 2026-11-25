@@ -1,0 +1,26 @@
+/*
+    custom-container-start
+*/
+
+// 1424 less the 2 x 12px gutter = the 1400px content column of the 1920 design
+@media (min-width: 1600px) {
+    .container{
+        &.tt-container-1 {
+            max-width: 1424px;
+        }
+
+    }
+}
+
+
+// the header bars of home 1 and 3 run edge to edge: the 12px gutter of the fluid container is the 12px of the design
+.container-fluid {
+    &.tt-container-2 {
+        max-width: 1920px;
+    }
+}
+
+
+/*
+    custom-container-end
+*/

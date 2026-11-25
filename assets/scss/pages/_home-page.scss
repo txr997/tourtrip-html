@@ -1,0 +1,63 @@
+@use '../abstracts/variables' as *;
+
+/* 
+    home-page-css-start
+*/
+
+.ax-home-1 {
+    background-color: #EFEFEB;
+}
+
+.ax-home-3 {
+    background-color: #EFEFEB;
+
+    // the subtitles of home 3: a chip 32 high, a 4px square at each end; white on the light sections, #414141 on the dark ones (the services tag has its own)
+    .ax-subtitle-1:not(.has-white),
+    .ax-subtitle-2 {
+        --sub-bg: #fff;
+        --sub-sq: #000;
+        --sub-tx: rgb(0 0 0 / 60%);
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        height: 32px;
+        padding: 0 12px;
+        border: 0;
+        background: var(--sub-bg);
+        font-family: var(--ax-font-1);
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 22px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--sub-tx);
+
+        &::before,
+        &::after {
+            content: "";
+            position: static;
+            inset: auto;
+            flex: none;
+            width: 4px;
+            height: 4px;
+            border-radius: 1px;
+            background: var(--sub-sq);
+        }
+    }
+
+    // the 8px of room the corner lines of the old label needed, kept above and under
+    .ax-subtitle-2 {
+        margin: 8px 0;
+    }
+
+    .ax-subtitle-2:not(.has-dark) {
+        --sub-bg: #414141;
+        --sub-sq: #fff;
+        --sub-tx: rgb(255 255 255 / 60%);
+    }
+}
+
+
+/* 
+    home-page-css-end
+*/

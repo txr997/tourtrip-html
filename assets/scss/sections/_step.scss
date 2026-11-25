@@ -1,0 +1,363 @@
+@use '../abstracts/variables' as *;
+
+
+/*
+    tt-step-1-start
+*/
+.tt-step-1 {
+    // 1920 design, 921 high: 103 on top, the head 148, 48, the cards and the pictures 490, 132 below; from 1200px main.js pins it, and it fills the screen
+    &-area {
+        position: relative;
+        padding: 103px 0 132px;
+        background: #fff;
+
+        @media #{$xxl} {
+            padding: 96px 0 120px;
+        }
+
+        @media #{$xl} {
+            padding: 88px 0 108px;
+        }
+
+        @media #{$lg} {
+            padding: 80px 0 96px;
+        }
+
+        @media #{$md} {
+            padding: 64px 0 80px;
+        }
+
+        @media #{$xs} {
+            padding: 56px 0 64px;
+        }
+
+        @media (min-width: 1200px) {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100vh;
+        }
+    }
+
+    // the heart and the van at the left (105 x 116, 89 in and 213 down); only where there is room beside the cards
+    &-shape {
+        position: absolute;
+        top: 11.09vw;
+        left: 4.64%;
+        width: 5.47%;
+        aspect-ratio: 105 / 116;
+        pointer-events: none;
+
+        @media #{$xxl,$xl,$lg,$md,$sm,$xs} {
+            display: none;
+        }
+    }
+
+    // the dotted route at the right (727 x 895, starts 1194 in), three dots on it and the plane
+    &-route {
+        position: absolute;
+        top: 0;
+        left: 62.19%;
+        width: 37.86%;
+        aspect-ratio: 727 / 895;
+        pointer-events: none;
+
+        @media #{$lg,$md,$sm,$xs} {
+            display: none;
+        }
+    }
+
+    &-route-line {
+        position: absolute;
+        inset: 0;
+    }
+
+    // a white disc with an orange centre, 11px
+    &-dot {
+        position: absolute;
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: radial-gradient(circle, var(--tt-clr-pr-1) 0 2px, #fff 2.5px);
+        box-shadow: 0 4px 4px rgb(0 0 0 / 12%);
+        transform: translate(-50%, -50%);
+
+        &.is-1 {
+            top: 0.61%;
+            left: 17.68%;
+        }
+
+        &.is-2 {
+            top: 16.26%;
+            left: 58.11%;
+        }
+
+        &.is-3 {
+            top: 89.89%;
+            left: 2.41%;
+        }
+    }
+
+    // the line the plane follows: a smooth path in the 727 x 895 of the route (main.js reads it; it is not drawn)
+    &-trail {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+    }
+
+    &-trail-path {
+        fill: none;
+        stroke: none;
+    }
+
+    // where the plane stands in the design (27 wide, nose to the south-west); main.js takes over left, top and the turn
+    &-plane {
+        position: absolute;
+        top: 87.54%;
+        left: 83.08%;
+        width: 3.71%;
+        aspect-ratio: 30 / 28;
+        transform: translate(-50%, -50%) rotate(145.59deg);
+    }
+
+    &-wrap {
+        position: relative;
+        z-index: 1;
+    }
+
+    &-head {
+        max-width: 660px;
+        margin: 0 auto;
+        text-align: center;
+
+        .tt-subtitle-1 {
+            display: block;
+        }
+    }
+
+    // the line is 56 in the design, not the 54 of the title class
+    &-title {
+        margin-top: 12px;
+        line-height: 1.1667;
+    }
+
+    // the cards 568, 74, the pictures 758; under 1200 they stack
+    &-row {
+        display: grid;
+        grid-template-columns: minmax(0, 568fr) minmax(0, 758fr);
+        column-gap: 74px;
+        align-items: center;
+        margin-top: 48px;
+
+        @media #{$xxl} {
+            column-gap: 56px;
+        }
+
+        @media #{$xl} {
+            column-gap: 40px;
+        }
+
+        @media #{$lg,$md,$sm,$xs} {
+            grid-template-columns: minmax(0, 1fr);
+            row-gap: 40px;
+            margin-top: 40px;
+        }
+    }
+
+    &-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        @media #{$lg,$md,$sm,$xs} {
+            width: 100%;
+            max-width: 568px;
+            margin: 0 auto;
+        }
+    }
+
+    // 568 x 92 with a line; the active one is grey, 190 high with its text, and has no line (the first 1px of the padding is the line)
+    &-card {
+        padding: 17px 19px;
+        border: 1px solid rgb(10 10 10 / 12%);
+        border-radius: 16px;
+        background: #fff;
+        cursor: pointer;
+        transition: var(--tt-cube-1);
+
+        &.is-active {
+            border-color: transparent;
+            background: var(--tt-clr-bg-2);
+            cursor: default;
+        }
+
+        @media #{$xs} {
+            padding: 13px 15px;
+        }
+    }
+
+    &-card-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+    }
+
+    &-card-main {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        min-width: 0;
+
+        @media #{$xs} {
+            gap: 12px;
+        }
+    }
+
+    // 56 with a 10 radius: grey with the blue icon, blue with the white icon when the card is the active one
+    &-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+        width: 56px;
+        height: 56px;
+        border-radius: 10px;
+        background: var(--tt-clr-bg-2);
+        font-size: 28px;
+        line-height: 1;
+        color: var(--tt-clr-sd-1);
+        transition: var(--tt-cube-1);
+
+        @media #{$xs} {
+            width: 48px;
+            height: 48px;
+            font-size: 24px;
+        }
+    }
+
+    &-card.is-active &-icon {
+        background: var(--tt-clr-sd-1);
+        color: #fff;
+    }
+
+    // "Step 01": grey, the number blue on the active card
+    &-no {
+        flex: none;
+        line-height: 1.75;
+        white-space: nowrap;
+        opacity: 0.6;
+        transition: var(--tt-cube-1);
+
+        @media #{$xs} {
+            font-size: 14px;
+        }
+    }
+
+    &-num {
+        font-weight: inherit;
+    }
+
+    &-card.is-active &-no {
+        opacity: 1;
+    }
+
+    &-card.is-active &-num {
+        color: var(--tt-clr-sd-1);
+    }
+
+    // the text opens under the head: 12 down, 72 in (under the title), 84 wide in all
+    &-body {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.4s cubic-bezier(0.18, 0.82, 0.41, 1);
+    }
+
+    &-card.is-active &-body {
+        grid-template-rows: 1fr;
+    }
+
+    &-body-in {
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    &-desc {
+        padding: 12px 12px 0 72px;
+        opacity: 0;
+        transition: opacity 0.4s;
+
+        @media #{$xs} {
+            padding: 10px 0 0;
+        }
+    }
+
+    &-card.is-active &-desc {
+        opacity: 0.8;
+    }
+
+    // 758 x 490: the four pictures sit in % of it; the active one is sharp, the others are blurred
+    &-pics {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 758 / 490;
+
+        @media #{$lg,$md,$sm,$xs} {
+            max-width: 758px;
+            margin: 0 auto;
+        }
+    }
+
+    &-pic {
+        position: absolute;
+        border-radius: 12px;
+        box-shadow: 8px 8px 32px rgb(0 0 0 / 16%);
+        filter: blur(6px);
+        transition: var(--tt-cube-1);
+
+        &.is-active {
+            filter: blur(0);
+        }
+
+        &:nth-child(1) {
+            top: 0;
+            left: 14.38%;
+            width: 47.1%;
+            aspect-ratio: 357 / 223;
+        }
+
+        &:nth-child(2) {
+            top: 10.41%;
+            left: 64.25%;
+            width: 35.75%;
+            aspect-ratio: 271 / 251;
+        }
+
+        &:nth-child(3) {
+            top: 49.59%;
+            left: 0;
+            width: 45.38%;
+            aspect-ratio: 344 / 196;
+        }
+
+        &:nth-child(4) {
+            top: 66.53%;
+            left: 48.15%;
+            width: 42.22%;
+            aspect-ratio: 320 / 164;
+        }
+
+        @media #{$xs} {
+            filter: blur(4px);
+
+            &.is-active {
+                filter: blur(0);
+            }
+        }
+    }
+}
+/*
+    tt-step-1-end
+*/

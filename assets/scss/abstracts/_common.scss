@@ -1,0 +1,178 @@
+
+/*
+************
+*************************
+
+   Template Name: Tourtrip - Travel & Tourism HTML Template
+   Description: Three home pages for a travel and tourism agency: destinations, tour packages, hotels, offers, testimonials and a blog.
+   Author: https://themexriver.com/
+   Version: 1.0
+
+-----------------------------------------------------------------------------------
+
+CSS INDEX
+===================
+    01. common
+    02. utility
+    03. typography
+    04. button
+    05. form
+    06. offcanvas
+    07. search
+    08. preloader
+    09. wow-plus
+    10. glass-reveal
+    11. element
+    12. back-to-top
+    13. header
+    14. hero
+    15. categories
+    16. destination
+    17. about
+    18. tour
+    19. contact
+    20. popular-tours
+    21. offer
+    22. testimonial
+    23. blog
+    24. cta
+    25. footer
+*******************************************************
+*************************************************************** */
+
+/*
+    01. common
+*/
+
+@use 'variables' as *;
+
+// the room of the scrollbar is always kept, so the page does not jump when the preloader lets go of the scroll
+html {
+    scrollbar-gutter: stable;
+}
+
+body {
+    font-family: var(--tt-font-1);
+    font-size: 18px;
+    font-weight: 400;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5556;
+    color: var(--tt-clr-p-1);
+    overflow-x: hidden;
+    font-optical-sizing: auto;
+    font-feature-settings: 'liga' off, 'clig' off;
+
+}
+
+
+.img,img {
+    max-width: 100%;
+}
+
+a:focus,
+.button:focus {
+    text-decoration: none;
+    outline: none;
+}
+a , span  {
+    display: inline-block;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    text-transform: inherit;
+    text-decoration: none;
+    line-height: inherit;
+    transition: inherit;
+}
+
+
+button {
+    border: none;
+    outline: none;
+}
+
+a:focus,
+a:hover
+{
+    color: inherit;
+    text-decoration: none;
+}
+
+h1 {
+    font-size: 55px;
+}
+h2 {
+    font-size: 55px;
+}
+h3 {
+    font-size: 42px;
+}
+h4 {
+    font-size: 27px;
+}
+h5 {
+    font-size: 20px;
+}
+h6 {
+    font-size: 16px;
+}
+
+::-moz-selection {
+    background-color: var(--tt-clr-pr-1);
+    color: white;
+    text-shadow: none;
+}
+::selection {
+    background-color: var(--tt-clr-pr-1);
+    color: white;
+    text-shadow: none;
+}
+
+input ,textarea {
+    outline: none;
+    &::placeholder {
+        font-size: inherit;
+        font-weight: inherit;
+        color: inherit;
+        font-family: inherit;
+    }
+
+}
+
+input:focus::placeholder, textarea:focus::placeholder {
+    opacity: 0;
+}
+
+
+
+@media #{$over,$xxxl,$xxl} {
+    ::-webkit-scrollbar {
+        width: 7px;
+        background: #fff;
+        box-shadow: none;
+        border: none;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+        box-shadow: none;
+        border: none;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--tt-clr-pr-1);
+        border-radius: 6px;
+    }
+
+}
+
+.swiper-notification {
+    display: none;
+}
+
+
+/*
+    global-css-end
+*/

@@ -1,0 +1,202 @@
+@use '../abstracts/variables' as *;
+
+
+/*
+    tt-cat-1-start
+*/
+.tt-cat-1 {
+    // 1920 design, 556 high: 132 on top, the head 92, 48, the cards 152, 132 below
+    &-area {
+        position: relative;
+        padding: 132px 0;
+        background: var(--tt-clr-bg-2);
+
+        @media #{$xxl} {
+            padding: 120px 0;
+        }
+
+        @media #{$xl} {
+            padding: 108px 0;
+        }
+
+        @media #{$lg} {
+            padding: 96px 0;
+        }
+
+        @media #{$md} {
+            padding: 80px 0;
+        }
+
+        @media #{$xs} {
+            padding: 64px 0;
+        }
+    }
+
+    // the white brush edge (2142 x 215), turned over: its torn edge ends 32px under the top
+    &-wave {
+        position: absolute;
+        top: 0;
+        left: -5.83%;
+        width: 111.56%;
+        aspect-ratio: 2142 / 215;
+        transform: translateY(-85.12%) scaleY(-1);
+        pointer-events: none;
+
+        @media #{$md,$sm} {
+            left: -25%;
+            width: 150%;
+        }
+
+        @media #{$xs} {
+            left: -50%;
+            width: 200%;
+        }
+    }
+
+    &-head {
+        position: relative;
+        z-index: 1;
+        max-width: 1044px;
+        margin: 0 auto;
+        text-align: center;
+
+        .tt-subtitle-1 {
+            display: block;
+        }
+    }
+
+    // the line is 56 in the design, not the 54 of the title class
+    &-title {
+        margin-top: 12px;
+        line-height: 1.1667;
+    }
+
+    // the cards run to both edges of the page (the section clips them), the arrows stand at the container
+    &-slider-wrap {
+        position: relative;
+        z-index: 1;
+        margin-top: 48px;
+
+        @media #{$xs} {
+            margin-top: 32px;
+        }
+    }
+
+    &-slider {
+        overflow: visible;
+    }
+
+    &-slide {
+        width: 380px;
+        height: auto;
+
+        @media #{$xs} {
+            width: 300px;
+        }
+
+        // the card in the middle has the shadow
+        &.swiper-slide-active .tt-cat-1-card {
+            box-shadow: 9px 9px 28px rgb(0 0 0 / 20%);
+        }
+    }
+
+    // 380 x 152: the photo 120 and the text 24 beside it
+    &-card {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        height: 152px;
+        padding: 16px 20px 16px 16px;
+        border-radius: 32px;
+        background: #fff;
+        transition: var(--tt-cube-1);
+
+        &:hover {
+            box-shadow: 9px 9px 28px rgb(0 0 0 / 20%);
+        }
+
+        @media #{$xs} {
+            gap: 16px;
+            height: 120px;
+            padding: 12px 16px 12px 12px;
+            border-radius: 28px;
+        }
+    }
+
+    &-img {
+        flex: none;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+
+        @media #{$xs} {
+            width: 96px;
+            height: 96px;
+        }
+    }
+
+    &-info {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        min-width: 0;
+    }
+
+    // 18 on a 24 line, "12+" in blue
+    &-count {
+        line-height: 1.3333;
+    }
+
+    &-num {
+        color: var(--tt-clr-sd-1);
+    }
+
+    // over the slider, as wide as the container; the arrows hang 24px out of it where the page is wide enough, inside it elsewhere
+    &-nav {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 5;
+        margin: 0 auto;
+        pointer-events: none;
+    }
+
+    &-nav-box {
+        position: relative;
+        height: 100%;
+    }
+
+    &-prev,
+    &-next {
+        position: absolute;
+        top: 50%;
+        margin-top: -24px;
+        box-shadow: 0 8px 32px rgb(0 0 0 / 12%);
+        pointer-events: auto;
+
+        @media #{$xs} {
+            margin-top: -22px;
+        }
+    }
+
+    &-prev {
+        left: -24px;
+
+        @media #{$xl,$lg,$md,$sm,$xs} {
+            left: 12px;
+        }
+    }
+
+    &-next {
+        right: -24px;
+
+        @media #{$xl,$lg,$md,$sm,$xs} {
+            right: 12px;
+        }
+    }
+}
+/*
+    tt-cat-1-end
+*/

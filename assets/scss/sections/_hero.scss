@@ -1,0 +1,510 @@
+@use '../abstracts/variables' as *;
+
+
+/*
+    tt-hero-1-start
+*/
+
+.tt-hero-1 {
+    // 1920 design, 1048 high: 196 on top + the text 452 + 173 + the booking card 159 + 68 below
+    &-area {
+        position: relative;
+        padding: 196px 0 68px;
+        z-index: 2;
+        
+        @media #{$xxl} {
+            padding-top: 184px;
+        }
+
+        @media #{$xl} {
+            padding-top: 172px;
+        }
+
+        @media #{$lg} {
+            padding-top: 156px;
+        }
+
+        @media #{$md} {
+            padding-top: 144px;
+        }
+
+        @media #{$xs} {
+            padding: 128px 0 40px;
+        }
+    }
+
+    // the sky fills the hero, main.js lets it settle (a slow zoom out)
+    &-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+    }
+
+    // the pictures sit in % of the hero (1920 x 1048), the man stands on the bottom edge
+    &-bg-cloud,
+    &-plane,
+    &-parachute-1,
+    &-parachute-2,
+    &-man,
+    &-clouds,
+    &-wave {
+        position: absolute;
+        pointer-events: none;
+    }
+
+    &-bg-cloud {
+        z-index: 1;
+        top: 11.35%;
+        left: 39.79%;
+        width: 51.46%;
+        aspect-ratio: 988 / 227;
+    }
+
+    &-plane {
+        z-index: 2;
+        top: 17%;
+        left: 38.44%;
+        width: 9.01%;
+        aspect-ratio: 173 / 108;
+    }
+
+    &-parachute-1 {
+        z-index: 2;
+        top: 42.56%;
+        left: -2.29%;
+        width: 11.875%;
+        aspect-ratio: 228 / 225;
+    }
+
+    &-parachute-2 {
+        z-index: 2;
+        top: 18.7%;
+        left: 81.15%;
+        width: 6.72%;
+        aspect-ratio: 1;
+    }
+
+    &-man {
+        z-index: 2;
+        bottom: 0;
+        left: 42.4%;
+        width: 48.9%;
+        aspect-ratio: 939 / 913;
+    }
+
+    // the clouds and the white wave at the foot run past both sides and below the hero
+    &-clouds {
+        z-index: 3;
+        top: 79.3%;
+        left: -10.16%;
+        width: 117.86%;
+        aspect-ratio: 2263 / 489;
+    }
+
+    &-wave {
+        z-index: 3;
+        top: 96.85%;
+        left: -8.39%;
+        width: 111.56%;
+        aspect-ratio: 2142 / 215;
+    }
+
+    @media #{$md} {
+        &-bg-cloud {
+            left: auto;
+            right: -10%;
+            width: 70%;
+        }
+
+        &-man {
+            left: auto;
+            right: -6%;
+            width: 58%;
+        }
+
+        &-plane,
+        &-parachute-1 {
+            display: none;
+        }
+    }
+
+    @media #{$xs} {
+        &-bg-cloud,
+        &-man,
+        &-plane,
+        &-parachute-1,
+        &-parachute-2 {
+            display: none;
+        }
+    }
+
+    // the text: 595 wide, narrower where the man comes closer
+    &-content {
+        position: relative;
+        z-index: 4;
+        max-width: 595px;
+
+        @media #{$xl} {
+            max-width: 520px;
+        }
+
+        @media #{$lg} {
+            max-width: 440px;
+        }
+
+        @media #{$md} {
+            max-width: 50%;
+        }
+
+        @media #{$xs} {
+            max-width: none;
+        }
+    }
+
+    &-title {
+        margin: 12px 0 20px;
+    }
+
+    &-btn {
+        margin-top: 32px;
+    }
+
+    // the white card under the text: tabs on the left like a folder, a 6px glass line round it (913 x 159)
+    &-booking {
+        position: relative;
+        z-index: 4;
+        width: 913px;
+        max-width: 100%;
+        margin-top: 173px;
+
+        @media #{$xxl} {
+            margin-top: 150px;
+        }
+
+        @media #{$xl} {
+            margin-top: 120px;
+        }
+
+        @media #{$lg} {
+            margin-top: 96px;
+        }
+
+        @media #{$md} {
+            margin-top: 72px;
+        }
+
+        @media #{$xs} {
+            margin-top: 48px;
+        }
+    }
+
+    &-booking-tabs {
+        position: relative;
+        display: flex;
+        width: fit-content;
+        max-width: 100%;
+        padding: 20px 20px 0;
+        border-radius: 20px 20px 0 0;
+        background: #fff;
+
+        // the 6px glass line round the tabs: the blurred hero shows through it. It sits at z-index -1 of the booking box, under the tabs and the card
+        &::before {
+            content: "";
+            position: absolute;
+            inset: -6px -6px 0;
+            z-index: -1;
+            border-radius: 26px 26px 0 0;
+            background: rgb(255 255 255 / 40%);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+        }
+
+        // the round inner corner where the tabs meet the card
+        &::after {
+            content: "";
+            position: absolute;
+            right: -20px;
+            bottom: 0;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle at 100% 0, transparent 20px, #fff 20.5px);
+        }
+
+        @media (max-width: 575px) {
+            padding: 14px 12px 0;
+        }
+    }
+
+    &-tab {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        height: 36px;
+        padding: 0 20px;
+        border-radius: 12px 12px 0 12px;
+        background: #fff;
+        font-family: var(--tt-font-2);
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 1.4667;
+        color: rgb(10 10 10 / 80%);
+        transition: var(--tt-cube-1);
+
+        // the icons are masks, so the colour of the text paints them
+        .icon {
+            flex: none;
+            width: 16px;
+            height: 16px;
+            background: var(--tt-clr-sd-1);
+            -webkit-mask-size: contain;
+            mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-position: center;
+            transition: var(--tt-cube-1);
+        }
+
+        &:hover {
+            color: var(--tt-clr-sd-1);
+        }
+
+        &:is(.is-active) {
+            background: var(--tt-clr-sd-1);
+            font-family: var(--tt-font-1);
+            color: #fff;
+
+            .icon {
+                background: #fff;
+            }
+        }
+
+        @media (max-width: 575px) {
+            padding: 0 12px;
+        }
+
+        @media (max-width: 399px) {
+            gap: 3px;
+            padding: 0 6px;
+        }
+    }
+
+    &-booking-form {
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        gap: 8px;
+        padding: 20px;
+        border-radius: 0 20px 20px 20px;
+        background: #fff;
+
+        // the same glass line round the card
+        &::before {
+            content: "";
+            position: absolute;
+            inset: -6px;
+            z-index: -1;
+            border-radius: 0 26px 26px 26px;
+            background: rgb(255 255 255 / 40%);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+        }
+
+        // two columns, the button under them; one column under 576
+        @media #{$md,$sm,$xs} {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px 12px;
+            align-items: end;
+        }
+
+        @media (max-width: 575px) {
+            grid-template-columns: 1fr;
+            padding: 16px;
+        }
+    }
+
+    &-field {
+        flex: none;
+        width: 180px;
+
+        // the label 22 high, 1px, then the 40px box
+        .tt-label-3 {
+            display: block;
+            margin-bottom: 1px;
+        }
+
+        @media #{$md,$sm,$xs} {
+            width: 100%;
+        }
+    }
+
+    // the icons are masks (ink), the arrow turns over when the list is open
+    &-select {
+        position: relative;
+
+        .icon,
+        .arrow {
+            position: absolute;
+            top: 50%;
+            z-index: 1;
+            background: var(--tt-clr-h-1);
+            -webkit-mask-size: contain;
+            mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-position: center;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .icon {
+            left: 14px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .arrow {
+            right: 12px;
+            width: 14px;
+            height: 14px;
+            transition: var(--tt-cube-1);
+        }
+
+        .nice-select.open ~ .arrow {
+            transform: translateY(-50%) rotate(180deg);
+        }
+    }
+
+    // the select (nice-select copies this class to its box) and the date box: a white pill with a faint line, the text is the grey at 52%
+    &-select-input {
+        display: block;
+        float: none;
+        width: 100%;
+        height: 40px;
+        padding: 0 33px 0 36px;
+        border: 1px solid rgb(0 0 0 / 8%);
+        border-radius: 60px;
+        background: #fff;
+        font-family: var(--tt-font-1);
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 38px;
+        color: rgb(82 82 82 / 52%);
+        cursor: pointer;
+        transition: var(--tt-cube-1);
+
+        &::placeholder {
+            color: rgb(82 82 82 / 52%);
+            opacity: 1;
+        }
+
+        &:hover {
+            border-color: rgb(0 0 0 / 16%);
+        }
+
+        &:focus,
+        &.open {
+            border-color: var(--tt-clr-sd-1);
+        }
+
+        // the markup has its own arrow
+        &::after {
+            display: none;
+        }
+
+        .current {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        // the list opens upwards: the card sits at the foot of the hero, and the hero clips what leaves it
+        .list {
+            top: auto;
+            right: 0;
+            bottom: 100%;
+            max-height: 252px;
+            margin: 0 0 8px;
+            padding: 6px;
+            overflow-y: auto;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgb(0 0 0 / 14%);
+            transform-origin: 50% 100%;
+            transform: scale(0.94) translateY(8px);
+        }
+
+        &.open .list {
+            transform: none;
+        }
+
+        .option {
+            min-height: 0;
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 15px;
+            line-height: 24px;
+            color: var(--tt-clr-h-1);
+
+            &:hover,
+            &.focus,
+            &.selected.focus {
+                background: var(--tt-clr-bg-2);
+            }
+
+            &.selected {
+                font-weight: 600;
+            }
+
+            // the placeholder is not a choice
+            &.disabled {
+                display: none;
+            }
+        }
+    }
+
+    &-search-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        flex: none;
+        height: 40px;
+        padding: 0 24px 0 20px;
+        border-radius: 56px;
+        background: var(--tt-clr-pr-1);
+        font-family: var(--tt-font-1);
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.5;
+        color: #fff;
+        transition: var(--tt-cube-1);
+
+        .icon {
+            flex: none;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            -webkit-mask-size: contain;
+            mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-position: center;
+        }
+
+        &:hover {
+            background: var(--tt-clr-h-1);
+        }
+
+        @media #{$md,$sm,$xs} {
+            grid-column: 1 / -1;
+            width: 100%;
+            height: 48px;
+        }
+    }
+}
+/*
+    tt-hero-1-end
+*/

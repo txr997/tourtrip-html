@@ -1,0 +1,241 @@
+$flaticon_tourtrip-font: "flaticon_tourtrip";
+
+@font-face {
+    font-family: $flaticon_tourtrip-font;
+    src: url("./flaticon_tourtrip.woff2?56e3edfaa1885a4c5ef4e37f5959e379") format("woff2"),
+url("./flaticon_tourtrip.woff?56e3edfaa1885a4c5ef4e37f5959e379") format("woff"),
+url("./flaticon_tourtrip.eot?56e3edfaa1885a4c5ef4e37f5959e379#iefix") format("embedded-opentype"),
+url("./flaticon_tourtrip.ttf?56e3edfaa1885a4c5ef4e37f5959e379") format("truetype"),
+url("./flaticon_tourtrip.svg?56e3edfaa1885a4c5ef4e37f5959e379#flaticon_tourtrip") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon_tourtrip !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$flaticon_tourtrip-map: (
+    "luggage": "\f101",
+    "airplane": "\f102",
+    "location": "\f103",
+    "user": "\f104",
+    "calendar": "\f105",
+    "coin": "\f106",
+    "down": "\f107",
+    "dots": "\f108",
+    "right": "\f109",
+    "left": "\f10a",
+    "star": "\f10b",
+    "secure-payment": "\f10c",
+    "protection": "\f10d",
+    "money-bag": "\f10e",
+    "review": "\f10f",
+    "hot-air-balloon": "\f110",
+    "guide": "\f111",
+    "money-bag-1": "\f112",
+    "protection-1": "\f113",
+    "solo-traveller": "\f114",
+    "hands": "\f115",
+    "facebook": "\f116",
+    "linkedin": "\f117",
+    "instagram": "\f118",
+    "twitter": "\f119",
+    "location-pin": "\f11a",
+    "credit-card": "\f11b",
+    "plane": "\f11c",
+    "star-half-empty": "\f11d",
+    "double-bed": "\f11e",
+    "bath": "\f11f",
+    "arrow": "\f120",
+    "search": "\f121",
+    "pin": "\f122",
+    "up-right-arrow": "\f123",
+    "gallery": "\f124",
+    "maps": "\f125",
+    "youtube": "\f126",
+    "heart": "\f127",
+    "airplane-1": "\f128",
+    "airplane-2": "\f129",
+    "arrows": "\f12a",
+    "right-1": "\f12b",
+    "plane-1": "\f12c",
+    "plane-2": "\f12d",
+    "plane-3": "\f12e",
+    "travel-and-tourism": "\f12f",
+    "flag": "\f130",
+    "location-pin-1": "\f131",
+    "calendar-1": "\f132",
+    "tourist": "\f133",
+    "money-bag-2": "\f134",
+    "user-1": "\f135",
+    "send": "\f136",
+);
+
+.flaticon-luggage:before {
+    content: map-get($flaticon_tourtrip-map, "luggage");
+}
+.flaticon-airplane:before {
+    content: map-get($flaticon_tourtrip-map, "airplane");
+}
+.flaticon-location:before {
+    content: map-get($flaticon_tourtrip-map, "location");
+}
+.flaticon-user:before {
+    content: map-get($flaticon_tourtrip-map, "user");
+}
+.flaticon-calendar:before {
+    content: map-get($flaticon_tourtrip-map, "calendar");
+}
+.flaticon-coin:before {
+    content: map-get($flaticon_tourtrip-map, "coin");
+}
+.flaticon-down:before {
+    content: map-get($flaticon_tourtrip-map, "down");
+}
+.flaticon-dots:before {
+    content: map-get($flaticon_tourtrip-map, "dots");
+}
+.flaticon-right:before {
+    content: map-get($flaticon_tourtrip-map, "right");
+}
+.flaticon-left:before {
+    content: map-get($flaticon_tourtrip-map, "left");
+}
+.flaticon-star:before {
+    content: map-get($flaticon_tourtrip-map, "star");
+}
+.flaticon-secure-payment:before {
+    content: map-get($flaticon_tourtrip-map, "secure-payment");
+}
+.flaticon-protection:before {
+    content: map-get($flaticon_tourtrip-map, "protection");
+}
+.flaticon-money-bag:before {
+    content: map-get($flaticon_tourtrip-map, "money-bag");
+}
+.flaticon-review:before {
+    content: map-get($flaticon_tourtrip-map, "review");
+}
+.flaticon-hot-air-balloon:before {
+    content: map-get($flaticon_tourtrip-map, "hot-air-balloon");
+}
+.flaticon-guide:before {
+    content: map-get($flaticon_tourtrip-map, "guide");
+}
+.flaticon-money-bag-1:before {
+    content: map-get($flaticon_tourtrip-map, "money-bag-1");
+}
+.flaticon-protection-1:before {
+    content: map-get($flaticon_tourtrip-map, "protection-1");
+}
+.flaticon-solo-traveller:before {
+    content: map-get($flaticon_tourtrip-map, "solo-traveller");
+}
+.flaticon-hands:before {
+    content: map-get($flaticon_tourtrip-map, "hands");
+}
+.flaticon-facebook:before {
+    content: map-get($flaticon_tourtrip-map, "facebook");
+}
+.flaticon-linkedin:before {
+    content: map-get($flaticon_tourtrip-map, "linkedin");
+}
+.flaticon-instagram:before {
+    content: map-get($flaticon_tourtrip-map, "instagram");
+}
+.flaticon-twitter:before {
+    content: map-get($flaticon_tourtrip-map, "twitter");
+}
+.flaticon-location-pin:before {
+    content: map-get($flaticon_tourtrip-map, "location-pin");
+}
+.flaticon-credit-card:before {
+    content: map-get($flaticon_tourtrip-map, "credit-card");
+}
+.flaticon-plane:before {
+    content: map-get($flaticon_tourtrip-map, "plane");
+}
+.flaticon-star-half-empty:before {
+    content: map-get($flaticon_tourtrip-map, "star-half-empty");
+}
+.flaticon-double-bed:before {
+    content: map-get($flaticon_tourtrip-map, "double-bed");
+}
+.flaticon-bath:before {
+    content: map-get($flaticon_tourtrip-map, "bath");
+}
+.flaticon-arrow:before {
+    content: map-get($flaticon_tourtrip-map, "arrow");
+}
+.flaticon-search:before {
+    content: map-get($flaticon_tourtrip-map, "search");
+}
+.flaticon-pin:before {
+    content: map-get($flaticon_tourtrip-map, "pin");
+}
+.flaticon-up-right-arrow:before {
+    content: map-get($flaticon_tourtrip-map, "up-right-arrow");
+}
+.flaticon-gallery:before {
+    content: map-get($flaticon_tourtrip-map, "gallery");
+}
+.flaticon-maps:before {
+    content: map-get($flaticon_tourtrip-map, "maps");
+}
+.flaticon-youtube:before {
+    content: map-get($flaticon_tourtrip-map, "youtube");
+}
+.flaticon-heart:before {
+    content: map-get($flaticon_tourtrip-map, "heart");
+}
+.flaticon-airplane-1:before {
+    content: map-get($flaticon_tourtrip-map, "airplane-1");
+}
+.flaticon-airplane-2:before {
+    content: map-get($flaticon_tourtrip-map, "airplane-2");
+}
+.flaticon-arrows:before {
+    content: map-get($flaticon_tourtrip-map, "arrows");
+}
+.flaticon-right-1:before {
+    content: map-get($flaticon_tourtrip-map, "right-1");
+}
+.flaticon-plane-1:before {
+    content: map-get($flaticon_tourtrip-map, "plane-1");
+}
+.flaticon-plane-2:before {
+    content: map-get($flaticon_tourtrip-map, "plane-2");
+}
+.flaticon-plane-3:before {
+    content: map-get($flaticon_tourtrip-map, "plane-3");
+}
+.flaticon-travel-and-tourism:before {
+    content: map-get($flaticon_tourtrip-map, "travel-and-tourism");
+}
+.flaticon-flag:before {
+    content: map-get($flaticon_tourtrip-map, "flag");
+}
+.flaticon-location-pin-1:before {
+    content: map-get($flaticon_tourtrip-map, "location-pin-1");
+}
+.flaticon-calendar-1:before {
+    content: map-get($flaticon_tourtrip-map, "calendar-1");
+}
+.flaticon-tourist:before {
+    content: map-get($flaticon_tourtrip-map, "tourist");
+}
+.flaticon-money-bag-2:before {
+    content: map-get($flaticon_tourtrip-map, "money-bag-2");
+}
+.flaticon-user-1:before {
+    content: map-get($flaticon_tourtrip-map, "user-1");
+}
+.flaticon-send:before {
+    content: map-get($flaticon_tourtrip-map, "send");
+}

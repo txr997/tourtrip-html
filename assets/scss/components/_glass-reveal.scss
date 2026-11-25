@@ -1,0 +1,82 @@
+/*
+    wa-glass-reveal — put the class on any image wrapper: fluted glass bars slide across the photo as it scrolls in (main.js)
+*/
+// zero specificity, so a wrapper's own position / overflow still wins
+:where(.wa-glass-reveal) {
+    position: relative;
+    overflow: hidden;
+}
+
+.wa-glass {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+
+    // the part the glass has not reached yet: the same photo, frosted
+    &-cover {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgb(255 255 255 / 28%);
+        }
+    }
+
+    &-glitch {
+        position: absolute;
+        inset: 0;
+    }
+
+    &-band,
+    &-bar {
+        position: absolute;
+        overflow: hidden;
+    }
+
+    &-band {
+        left: 0;
+        right: 0;
+    }
+
+    &-bar {
+        top: 0;
+        bottom: 0;
+
+        // soft shade across the rib, a faint rainbow seam on the right
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent 0%, transparent 52%, rgb(0 0 0 / 8%) 72%, transparent 90%, rgb(110 190 255 / 18%) 96%, rgb(255 150 100 / 18%) 100%);
+        }
+    }
+
+    // a copy of the photo at its full size: --w x --ph
+    &-pic {
+        position: absolute;
+        top: 0;
+        width: var(--w);
+        height: var(--ph);
+
+        .wa-glass-cover & {
+            filter: blur(14px) saturate(.9);
+            transform: scale(1.08);
+        }
+
+        .wa-glass-bar & {
+            filter: blur(3px) brightness(1.06) saturate(1.1);
+        }
+
+        // red / blue fringes on the edges of the shifted slices
+        .wa-glass-band & {
+            filter: drop-shadow(5px 0 0 rgb(255 60 60 / 55%)) drop-shadow(-5px 0 0 rgb(40 170 255 / 55%));
+        }
+    }
+}

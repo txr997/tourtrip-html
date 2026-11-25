@@ -1,0 +1,319 @@
+@use '../abstracts/variables' as *;
+
+
+/*
+    tt-desti-1-start
+*/
+.tt-desti-1 {
+    // 1920 design, 844 high: 132 on top, the head 144, 48, the cards 416, 48, the button 56 at the foot
+    &-area {
+        position: relative;
+        padding: 132px 0 0;
+        background: #fff;
+
+        @media #{$xxl} {
+            padding-top: 120px;
+        }
+
+        @media #{$xl} {
+            padding-top: 108px;
+        }
+
+        @media #{$lg} {
+            padding-top: 96px;
+        }
+
+        @media #{$md} {
+            padding-top: 80px;
+        }
+
+        @media #{$xs} {
+            padding-top: 64px;
+        }
+    }
+
+    // the dotted flight path: 1920 x 540 in the design, it starts 110px above the section and scales with the width
+    &-route {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        aspect-ratio: 1920 / 540;
+        transform: translateY(-20.37%);
+        pointer-events: none;
+
+        @media #{$xs} {
+            display: none;
+        }
+    }
+
+    &-route-line {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+    }
+
+    &-route-path {
+        fill: none;
+        stroke: var(--tt-clr-h-1);
+        stroke-opacity: 0.2;
+        stroke-width: 1;
+        stroke-dasharray: 2 4;
+        vector-effect: non-scaling-stroke;
+    }
+
+    // the stops (a white disc with an orange centre) sit on the line, in % of the 1920 x 540 box
+    &-stop {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: radial-gradient(circle, var(--tt-clr-pr-1) 0 3px, #fff 3.5px);
+        box-shadow: 0 4px 4px rgb(0 0 0 / 12%);
+        transform: translate(-50%, -50%);
+
+        &.is-1 {
+            top: 74.26%;
+            left: 7.97%;
+        }
+
+        &.is-2 {
+            top: 42.04%;
+            left: 35.47%;
+        }
+
+        &.is-3 {
+            top: 49.07%;
+            left: 88.49%;
+        }
+    }
+
+    // where the plane stands in the design; main.js flies it along the line and takes over left, top and the turn
+    &-plane {
+        position: absolute;
+        top: 58.52%;
+        left: 16.74%;
+        width: 30px;
+        height: 28px;
+        transform: translate(-50%, -50%) rotate(-30.26deg);
+    }
+
+    &-head {
+        position: relative;
+        z-index: 1;
+        max-width: 784px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    // the script line is a block, so it is not set on a line box (28px) but takes its 24px
+    &-head .tt-subtitle-1 {
+        display: block;
+    }
+
+    &-title {
+        margin-top: 12px;
+    }
+
+    &-slider-wrap {
+        position: relative;
+        z-index: 1;
+        margin-top: 48px;
+
+        @media #{$xs} {
+            margin-top: 32px;
+        }
+    }
+
+    // nothing clips the slider, so the shadow of the cards is whole; the slides outside the container are hidden instead (Swiper marks the ones inside as visible)
+    &-slider {
+        overflow: visible;
+
+        &.swiper-initialized .swiper-slide {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s;
+        }
+
+        &.swiper-initialized .swiper-slide-visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    }
+
+    // a glass plate (white at 80%, a soft shadow) with the photo 8px inside it; the plate is 340 x 416 in the design and keeps that shape
+    &-card {
+        --tt-desti-r: 84px;
+        display: block;
+        aspect-ratio: 340 / 416;
+        padding: 8px;
+        border-radius: var(--tt-desti-r);
+        background: rgb(255 255 255 / 80%);
+        box-shadow: 0 0 28px rgb(0 0 0 / 12%);
+
+        @media #{$xl} {
+            --tt-desti-r: 72px;
+        }
+
+        @media #{$lg} {
+            --tt-desti-r: 64px;
+        }
+
+        @media #{$md,$sm} {
+            --tt-desti-r: 60px;
+        }
+
+        @media #{$xs} {
+            --tt-desti-r: 56px;
+        }
+
+        &:hover .tt-desti-1-img {
+            transform: scale(1.06);
+        }
+    }
+
+    &-photo {
+        position: relative;
+        height: 100%;
+        border-radius: calc(var(--tt-desti-r) - 4px);
+    }
+
+    &-img {
+        position: absolute;
+        inset: 0;
+        transition: transform 0.8s cubic-bezier(0.18, 0.82, 0.41, 1);
+    }
+
+    // dark at the foot, so the name can be read on any photo
+    &-shade {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 50%;
+        background: linear-gradient(180deg, rgb(10 10 10 / 0%) 0%, rgb(10 10 10 / 85%) 100%);
+    }
+
+    &-info {
+        position: absolute;
+        right: 0;
+        bottom: 20px;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        padding: 0 16px;
+        text-align: center;
+    }
+
+    &-name {
+        letter-spacing: -0.01em;
+    }
+
+    &-count {
+        opacity: 0.8;
+    }
+
+    // the arrows hang 24px out of the container where the page is wide enough, inside it elsewhere
+    &-prev,
+    &-next {
+        position: absolute;
+        top: 50%;
+        z-index: 5;
+        margin-top: -24px;
+        box-shadow: 0 8px 32px rgb(0 0 0 / 12%);
+
+        @media #{$xs} {
+            margin-top: -22px;
+        }
+    }
+
+    &-prev {
+        left: -24px;
+
+        @media #{$xl,$lg,$md,$sm,$xs} {
+            left: 12px;
+        }
+    }
+
+    &-next {
+        right: -24px;
+
+        @media #{$xl,$lg,$md,$sm,$xs} {
+            right: 12px;
+        }
+    }
+
+    // the button in the middle, a line on each side that runs to the edge of the page and ends in a blue dot beside the button
+    &-foot {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 48px;
+        // the lines go to the edges of the page, past the container
+        margin-right: calc(50% - 50vw);
+        margin-left: calc(50% - 50vw);
+        // the line coming in from the right must not widen the page
+        overflow-x: clip;
+
+        @media #{$xs} {
+            margin-top: 32px;
+        }
+    }
+
+    &-line {
+        position: relative;
+        flex: 1;
+        height: 15px;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 7px;
+            right: 0;
+            left: 0;
+            height: 1px;
+            opacity: 0.2;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--tt-clr-sd-1) 0 3.5px, #fff 4px);
+            box-shadow: 0 4px 4px rgb(0 0 0 / 12%);
+        }
+
+        &.is-left {
+            &::before {
+                background: linear-gradient(90deg, #707070, var(--tt-clr-h-1));
+            }
+
+            &::after {
+                right: 0;
+            }
+        }
+
+        &.is-right {
+            &::before {
+                background: linear-gradient(90deg, var(--tt-clr-h-1), #707070);
+            }
+
+            &::after {
+                left: 0;
+            }
+        }
+    }
+}
+/*
+    tt-desti-1-end
+*/

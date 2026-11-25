@@ -1,0 +1,326 @@
+@use '../abstracts/variables' as *;
+
+
+/*
+    tt-testi-1-start
+*/
+.tt-testi-1 {
+    // 1920 design, 924 high: 132 on top, the head 168, 48, the row 444, 132 below; the row starts 20 from the left of the page and runs out at the right
+    &-area {
+        position: relative;
+        padding: 132px 0;
+        background: var(--tt-clr-bg-2);
+
+        @media #{$xxl} {
+            padding: 120px 0;
+        }
+
+        @media #{$xl} {
+            padding: 108px 0;
+        }
+
+        @media #{$lg} {
+            padding: 96px 0;
+        }
+
+        @media #{$md} {
+            padding: 80px 0;
+        }
+
+        @media #{$xs} {
+            padding: 64px 0;
+        }
+    }
+
+    // the white brush edge (2142 x 215) at the foot: it starts 40px above the foot
+    &-wave {
+        position: absolute;
+        bottom: 0;
+        left: -5.83%;
+        width: 111.56%;
+        aspect-ratio: 2142 / 215;
+        transform: translateY(81.4%);
+        pointer-events: none;
+
+        @media #{$md,$sm} {
+            left: -25%;
+            width: 150%;
+        }
+
+        @media #{$xs} {
+            left: -50%;
+            width: 200%;
+        }
+    }
+
+    &-wrap {
+        position: relative;
+        z-index: 1;
+    }
+
+    &-head {
+        max-width: 845px;
+        margin: 0 auto;
+        text-align: center;
+
+        .tt-subtitle-1 {
+            display: block;
+        }
+    }
+
+    // the line is 56 in the design, not the 54 of the title class
+    &-title {
+        margin: 12px 0 20px;
+        line-height: 1.1667;
+    }
+
+    // the rating card 380, 16, the cards; under 1200 the rating card stands over them
+    &-row {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-top: 48px;
+        padding-left: 20px;
+
+        @media #{$lg,$md,$sm,$xs} {
+            flex-direction: column;
+            align-items: stretch;
+            margin-top: 40px;
+            padding-left: 0;
+        }
+    }
+
+    // 380 x 444: the picture on top, 27px of its foot fade into the blue, the text starts 298 down
+    &-rate {
+        position: relative;
+        flex: none;
+        width: 380px;
+        height: 444px;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #0f88e0;
+        font-family: var(--tt-font-2);
+        font-weight: 600;
+        color: #fff;
+
+        @media #{$lg,$md,$sm,$xs} {
+            width: min(380px, calc(100% - 32px));
+            margin: 0 auto;
+        }
+    }
+
+    &-rate-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 354px;
+    }
+
+    &-rate-fade {
+        position: absolute;
+        top: 327px;
+        left: 0;
+        width: 100%;
+        height: 27px;
+        background: linear-gradient(180deg, rgb(15 136 224 / 0%) 0%, #0f88e0 100%);
+    }
+
+    &-rate-body {
+        position: absolute;
+        top: 298px;
+        left: 33px;
+        width: 308px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 7px;
+    }
+
+    &-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 4px 8px;
+        border-radius: 4px;
+        background: #0f88e0;
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+    &-chip-star {
+        font-size: 20px;
+        line-height: 1;
+        color: var(--tt-clr-pr-1);
+    }
+
+    &-excellent {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        width: 100%;
+    }
+
+    &-excellent-text {
+        font-size: 32px;
+        line-height: 36px;
+    }
+
+    // five orange tiles 30 x 30, a pixel apart; the last one is half grey-blue
+    &-tiles {
+        display: flex;
+        gap: 1px;
+    }
+
+    &-tile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 3px;
+        background: var(--tt-clr-pr-1);
+        font-size: 18px;
+        line-height: 1;
+        color: #fff;
+
+        &.is-half {
+            background: linear-gradient(90deg, var(--tt-clr-pr-1) 50%, #4bbcf2 50%);
+        }
+    }
+
+    &-score {
+        display: flex;
+        align-items: flex-end;
+        gap: 12px;
+        font-size: 16px;
+        line-height: 28px;
+    }
+
+    &-score-label {
+        opacity: 0.8;
+    }
+
+    &-score-line {
+        width: 2px;
+        height: 25px;
+        margin-bottom: 0;
+        background: radial-gradient(circle, #fff 0%, #0f88e0 100%);
+    }
+
+    // the window of the cards starts at the edge of the rating card (the 16px of the gap is its room for the glow) and runs out at the right of the page;
+    // the room above and under it is for the glow of the card under the pointer
+    &-slider {
+        flex: 1;
+        min-width: 0;
+        margin: -20px 0 -50px -16px;
+        padding: 20px 0 50px 16px;
+
+        @media #{$lg,$md,$sm,$xs} {
+            flex: none;
+            width: 100%;
+            margin-left: 0;
+        }
+    }
+
+    &-slide {
+        width: 389px;
+        height: auto;
+
+        @media #{$xs} {
+            width: min(340px, 86vw);
+        }
+    }
+
+    // 389 x 444: the head, and under it the grey box with the words and the picture
+    &-card {
+        height: 100%;
+        padding: 20px 16px 16px;
+        border-radius: 16px;
+        background: #fff;
+        transition: var(--tt-cube-1);
+
+        // the 2nd card of the design: a glow, the words black, the picture in colour
+        &:hover {
+            box-shadow: 12px 12px 30px rgb(0 0 0 / 20%);
+
+            .tt-testi-1-text {
+                color: var(--tt-clr-h-1);
+            }
+
+            .tt-testi-1-photo {
+                filter: grayscale(0);
+            }
+        }
+    }
+
+    &-top {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding-left: 4px;
+    }
+
+    // 64 with a 4px ring of the grey of the page
+    &-avatar {
+        flex: none;
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        box-shadow: 0 0 0 4px var(--tt-clr-bg-2);
+    }
+
+    &-who {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 0;
+    }
+
+    &-quote {
+        margin-top: 20px;
+        padding: 24px;
+        border-radius: 12px;
+        background: var(--tt-clr-bg-2);
+    }
+
+    // six lines of 30 is the room of the design
+    &-text {
+        min-height: 180px;
+        margin-bottom: 24px;
+        transition: var(--tt-cube-1);
+    }
+
+    // 309 x 72: the picture grey, five white stars over its middle
+    &-strip {
+        position: relative;
+        aspect-ratio: 309 / 72;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    &-photo {
+        position: absolute;
+        inset: 0;
+        filter: grayscale(1);
+        transition: var(--tt-cube-1);
+    }
+
+    &-stars {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        font-size: 16px;
+        line-height: 1;
+        color: #fff;
+        filter: drop-shadow(0 1px 3px rgb(0 0 0 / 35%));
+    }
+}
+/*
+    tt-testi-1-end
+*/

@@ -1,0 +1,158 @@
+@use '../abstracts/variables' as *;
+
+// under 576 the button goes below the field and the title steps down so "Get Inspired [pic] For Your" holds one line
+$narrow: "(max-width: 575px)";
+
+
+/*
+    tt-cta-1-start
+*/
+.tt-cta-1 {
+    // 1920 design, 1060 high: the video fills it, the content (694 wide) starts 70 from the top
+    &-area {
+        position: relative;
+        min-height: 1060px;
+        padding-top: 70px;
+        background: #fff;
+
+        @media #{$xxxl} {
+            min-height: 980px;
+        }
+
+        @media #{$xxl} {
+            min-height: 880px;
+            padding-top: 64px;
+        }
+
+        @media #{$xl} {
+            min-height: 780px;
+            padding-top: 56px;
+        }
+
+        @media #{$lg} {
+            min-height: 700px;
+            padding-top: 56px;
+        }
+
+        @media #{$md} {
+            min-height: 640px;
+            padding-top: 48px;
+        }
+
+        @media #{$xs} {
+            min-height: 600px;
+            padding-top: 40px;
+        }
+
+        @media #{$narrow} {
+            min-height: 660px;
+        }
+    }
+
+    &-video {
+        position: absolute;
+        inset: 0;
+    }
+
+    // 414 high in the design: the content and 64 more; the stops fade it from white to the video
+    &-fade {
+        position: absolute;
+        inset: 0 0 auto;
+        height: 414px;
+        background: linear-gradient(180deg, #fff 12%, rgb(255 255 255 / 60%) 42%, rgb(255 255 255 / 0%) 100%);
+        pointer-events: none;
+
+        @media #{$xxl} {
+            height: 400px;
+        }
+
+        @media #{$xl} {
+            height: 380px;
+        }
+
+        @media #{$lg} {
+            height: 370px;
+        }
+
+        @media #{$md} {
+            height: 350px;
+        }
+
+        @media #{$xs} {
+            height: 330px;
+        }
+
+        @media #{$narrow} {
+            height: 400px;
+        }
+    }
+
+    &-content {
+        position: relative;
+        max-width: 694px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    // two lines 4 apart; the first holds the picture between the words, 14 from each
+    &-title {
+        @media #{$narrow} {
+            font-size: 28px;
+        }
+    }
+
+    &-line {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        column-gap: 0.25em;
+
+        & + & {
+            margin-top: 4px;
+        }
+    }
+
+    // 124 x 52 at the 56 title, in em so it follows the title; the 4px line is outside the box
+    &-pill {
+        // flex, so the inline img sits on no text baseline and fills the box
+        display: flex;
+        flex: none;
+        width: 2.2143em;
+        height: 0.9286em;
+        border-radius: 100px;
+        box-shadow: 0 0 0 4px rgb(0 0 0 / 10%);
+
+        @media #{$xs} {
+            box-shadow: 0 0 0 3px rgb(0 0 0 / 10%);
+        }
+    }
+
+    &-text {
+        margin-top: 12px;
+    }
+
+    // 525 field, 7 gap, 162 button
+    &-form {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 7px;
+        margin-top: 32px;
+
+        @media #{$xs} {
+            margin-top: 24px;
+        }
+
+        @media #{$narrow} {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 8px;
+        }
+    }
+
+    &-field {
+        backdrop-filter: blur(44px);
+    }
+}
+/*
+    tt-cta-1-end
+*/

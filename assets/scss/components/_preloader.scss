@@ -1,0 +1,92 @@
+@use '../abstracts/variables' as *;
+
+/*
+    tt-preloader-1-start
+    a travel poster: the photo of the hero rises in an arch and the name fills with ink as the page loads, then the arch opens to the whole
+    screen and the sheet fades into the hero. main.js runs it
+*/
+
+// the page does not scroll behind it; the strip kept for the scrollbar takes the colour of the sheet
+html.tt-preloading {
+    overflow: hidden;
+    background: var(--tt-clr-bg-1);
+}
+
+.tt-preloader-1 {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--tt-clr-bg-1);
+    will-change: opacity;
+
+    // the arch, round on top; main.js opens it to the size of the screen (the radius is half the width, so it tweens from the real value)
+    &-frame {
+        --frame-w: clamp(200px, 22vw, 340px);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: var(--frame-w);
+        aspect-ratio: 3 / 4;
+        overflow: hidden;
+        border: 1px solid rgb(10 10 10 / 22%);
+        border-radius: calc(var(--frame-w) / 2) calc(var(--frame-w) / 2) 20px 20px;
+        transform: translate(-50%, -50%);
+    }
+
+    // main.js moves the clip (it rises from the bottom) and the scale (it settles) with the loading
+    &-photo {
+        position: absolute;
+        inset: 0;
+        clip-path: inset(100% 0 0 0);
+    }
+
+    &-photo-img {
+        position: absolute;
+        inset: 0;
+        transform: scale(1.3);
+    }
+
+    // the name stands over the arch: the outline is always there, the ink copy is cut by main.js from the right
+    &-word {
+        position: relative;
+        z-index: 2;
+        overflow: hidden;
+        padding: 0.04em 0;
+        font-size: clamp(56px, 16.5vw, 280px);
+    }
+
+    &-word-inner {
+        position: relative;
+        display: block;
+    }
+
+    &-word-line {
+        display: block;
+        font-family: var(--tt-font-2);
+        font-size: 1em;
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -0.04em;
+        text-transform: uppercase;
+        white-space: nowrap;
+
+        &.is-outline {
+            color: transparent;
+            -webkit-text-stroke: 1.5px rgb(10 10 10 / 35%);
+        }
+
+        &.is-fill {
+            position: absolute;
+            inset: 0;
+            color: var(--tt-clr-h-1);
+            clip-path: inset(0 100% 0 0);
+        }
+    }
+}
+
+/*
+    tt-preloader-1-end
+*/

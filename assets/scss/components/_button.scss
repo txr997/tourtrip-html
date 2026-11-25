@@ -1,0 +1,568 @@
+@use '../abstracts/variables' as *;
+
+/*
+    button-start
+*/
+
+// home 1: a 56px pill, the text and a 44px white circle with the arrow. Hover: the circle shrinks into the right edge while a new one
+// grows from the left edge (::before), the text moves over to make room for it; the pill keeps its colour and its width
+.tt-pr-btn-1 {
+    --tt-btn-disc: 44px;
+    --tt-btn-inset: 6px;
+    --tt-btn-pad: 26px;
+    --tt-btn-gap: 15px;
+    --tt-btn-ease: 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tt-btn-gap);
+    flex: none;
+    height: 56px;
+    padding: 6px var(--tt-btn-inset) 6px var(--tt-btn-pad);
+    border-radius: 100px;
+    background: var(--tt-clr-pr-1);
+    font-family: var(--tt-font-2);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.625;
+    white-space: nowrap;
+    color: #fff;
+
+    // the second circle: the arrow glyph of the icon font, hidden at rest
+    &::before {
+        content: "\f123";
+        position: absolute;
+        top: var(--tt-btn-inset);
+        left: var(--tt-btn-inset);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: var(--tt-btn-disc);
+        height: var(--tt-btn-disc);
+        border-radius: 50%;
+        background: #fff;
+        font-family: flaticon_tourtrip;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: normal;
+        line-height: 1;
+        color: var(--tt-clr-h-1);
+        opacity: 0;
+        transform: scale(0);
+        transform-origin: 0 50%;
+        transition: transform var(--tt-btn-ease), opacity var(--tt-btn-ease);
+    }
+
+    .text {
+        transition: transform var(--tt-btn-ease);
+    }
+
+    .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+        width: var(--tt-btn-disc);
+        height: var(--tt-btn-disc);
+        border-radius: 50%;
+        background: #fff;
+        font-size: 20px;
+        line-height: 1;
+        color: var(--tt-clr-h-1);
+        transform-origin: 100% 50%;
+        transition: transform var(--tt-btn-ease), opacity var(--tt-btn-ease);
+
+        i {
+            display: block;
+        }
+    }
+
+    &:hover {
+        // the page sets a:hover to inherit, the text stays white
+        color: #fff;
+
+        &::before {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        // the mirror of the rest: [pad][text][gap][circle] becomes [circle][gap][text][pad]
+        .text {
+            transform: translateX(calc(var(--tt-btn-inset) + var(--tt-btn-disc) + var(--tt-btn-gap) - var(--tt-btn-pad)));
+        }
+
+        .icon {
+            opacity: 0;
+            transform: scale(0);
+        }
+    }
+
+    // the black one of the light sections
+    &:is(.is-dark) {
+        background: var(--tt-clr-h-1);
+    }
+
+    // the blue one of the hero
+    &:is(.is-blue) {
+        background: var(--tt-clr-sd-1);
+    }
+
+    // the one of the hotels: the grey of the page with a black line and a black circle (the 1px line takes 1 off each inset, so the circle stays 6 from the edge)
+    &:is(.is-line) {
+        --tt-btn-inset: 5px;
+        --tt-btn-pad: 25px;
+        border: 1px solid var(--tt-clr-h-1);
+        background: var(--tt-clr-bg-2);
+        color: var(--tt-clr-h-1);
+
+        &::before,
+        .icon {
+            background: var(--tt-clr-h-1);
+            color: #fff;
+        }
+
+        &:hover {
+            color: var(--tt-clr-h-1);
+        }
+    }
+
+    @media #{$xs} {
+        --tt-btn-disc: 40px;
+        --tt-btn-pad: 22px;
+
+        height: 52px;
+
+        &::before,
+        .icon {
+            font-size: 18px;
+        }
+    }
+}
+
+
+// home 2: the same pill in blue, 52px high, the circle is the light grey of the page
+.tt-pr-btn-2 {
+    display: inline-flex;
+    align-items: center;
+    gap: 28px;
+    flex: none;
+    height: 52px;
+    padding: 4px 4px 4px 24px;
+    border-radius: 100px;
+    background: var(--tt-clr-sd-1);
+    font-family: var(--tt-font-2);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.625;
+    white-space: nowrap;
+    color: #fff;
+    transition: var(--tt-cube-1);
+
+    .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--tt-clr-bg-2);
+        font-size: 20px;
+        line-height: 1;
+        color: var(--tt-clr-h-1);
+        transition: var(--tt-cube-1);
+
+        i {
+            display: block;
+        }
+    }
+
+    &:hover {
+        background: var(--tt-clr-h-1);
+        color: #fff;
+
+        .icon {
+            background: var(--tt-clr-pr-1);
+            color: #fff;
+            transform: rotate(45deg);
+        }
+    }
+
+    @media #{$xs} {
+        gap: 20px;
+        padding-left: 20px;
+    }
+}
+
+
+// home 3: a 52px pill, the text and an 8px dot. Hover: the plate turns black and the dot orange
+.tt-pr-btn-3 {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    flex: none;
+    height: 52px;
+    padding: 0 26px;
+    border-radius: 100px;
+    background: var(--tt-clr-pr-1);
+    font-family: var(--tt-font-2);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.625;
+    white-space: nowrap;
+    color: #fff;
+    transition: var(--tt-cube-1);
+
+    .dot {
+        flex: none;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #fff;
+        transition: var(--tt-cube-1);
+    }
+
+    &:hover {
+        background: var(--tt-clr-h-1);
+        color: #fff;
+
+        .dot {
+            background: var(--tt-clr-pr-1);
+            transform: scale(1.25);
+        }
+    }
+
+    // the black one, it turns orange
+    &:is(.is-dark) {
+        background: var(--tt-clr-h-1);
+
+        &:hover {
+            background: var(--tt-clr-pr-1);
+
+            .dot {
+                background: #fff;
+            }
+        }
+    }
+
+    // the white one for the dark photos
+    &:is(.is-white) {
+        background: #fff;
+        color: var(--tt-clr-h-1);
+
+        .dot {
+            background: var(--tt-clr-pr-1);
+        }
+
+        &:hover {
+            background: var(--tt-clr-pr-1);
+            color: #fff;
+
+            .dot {
+                background: #fff;
+            }
+        }
+    }
+
+    @media #{$xs} {
+        height: 48px;
+        padding: 0 22px;
+    }
+}
+
+
+// the header of home 1: "Request a Quote", a 44px box with an orange line
+.tt-sd-btn-1 {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    height: 44px;
+    padding: 0 20px;
+    border: 2px solid var(--tt-clr-pr-1);
+    border-radius: 8px;
+    font-family: var(--tt-font-2);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.625;
+    letter-spacing: -0.015em;
+    white-space: nowrap;
+    color: var(--tt-clr-h-1);
+    transition: var(--tt-cube-1);
+
+    &:hover {
+        background: var(--tt-clr-pr-1);
+        color: #fff;
+    }
+}
+
+
+// the header of home 2: "Get In Touch", a 48px blue pill
+.tt-sd-btn-2 {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    height: 48px;
+    padding: 0 24px;
+    border-radius: 100px;
+    background: var(--tt-clr-sd-1);
+    font-family: var(--tt-font-2);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.625;
+    white-space: nowrap;
+    color: #fff;
+    transition: var(--tt-cube-1);
+
+    &:hover {
+        background: var(--tt-clr-h-1);
+        color: #fff;
+    }
+}
+
+
+// the square one of the forms ("Subscribe"): 56px high, the text and an arrow
+.tt-submit-btn-1 {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex: none;
+    height: 56px;
+    padding: 0 28px;
+    border-radius: 6px;
+    background: var(--tt-clr-pr-1);
+    font-family: var(--tt-font-2);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.625;
+    white-space: nowrap;
+    color: #fff;
+    transition: var(--tt-cube-1);
+
+    // the arrow of the flaticon font, or an svg
+    .icon {
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        line-height: 1;
+        transition: var(--tt-cube-1);
+    }
+
+    &:hover {
+        background: var(--tt-clr-h-1);
+        color: #fff;
+
+        .icon {
+            transform: translateX(4px);
+        }
+    }
+
+    // the black one of the booking card: the whole width, 10px corners
+    &:is(.is-block) {
+        width: 100%;
+        border-radius: 10px;
+        background: var(--tt-clr-h-1);
+
+        &:hover {
+            background: var(--tt-clr-pr-1);
+        }
+    }
+
+    @media #{$xs} {
+        height: 52px;
+        padding: 0 22px;
+    }
+}
+
+
+// "View Tour" of the tour cards: a 44px pill in the beige
+.tt-card-btn-1 {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex: none;
+    height: 44px;
+    padding: 0 24px;
+    border-radius: 100px;
+    background: var(--tt-clr-bg-5);
+    font-family: var(--tt-font-2);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.625;
+    white-space: nowrap;
+    color: var(--tt-clr-h-1);
+    transition: var(--tt-cube-1);
+
+    &:hover {
+        background: var(--tt-clr-h-1);
+        color: #fff;
+    }
+
+    // "Book Now" of the hotels: the grey of the page with blue text, it turns blue
+    &:is(.is-blue) {
+        background: var(--tt-clr-bg-2);
+        color: var(--tt-clr-sd-1);
+
+        &:hover {
+            background: var(--tt-clr-sd-1);
+            color: #fff;
+        }
+    }
+}
+
+
+// "Read Article" of the blog: the grey text and a 32px circle with the arrow
+.tt-link-btn-1 {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--tt-font-1);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.4667;
+    white-space: nowrap;
+    color: var(--tt-clr-p-1);
+    transition: var(--tt-cube-1);
+
+    .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--tt-clr-bg-2);
+        font-size: 16px;
+        line-height: 1;
+        color: var(--tt-clr-h-1);
+        transition: var(--tt-cube-1);
+    }
+
+    &:hover {
+        color: var(--tt-clr-h-1);
+
+        .icon {
+            background: var(--tt-clr-pr-1);
+            color: #fff;
+            transform: rotate(45deg);
+        }
+    }
+}
+
+
+// the arrows of the sliders: a 48px white circle with a soft shadow
+.tt-arrow-btn-1 {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 8px 32px rgb(0 0 0 / 12%);
+    font-size: 24px;
+    line-height: 1;
+    color: var(--tt-clr-h-1);
+    transition: var(--tt-cube-1);
+
+    &:hover {
+        background: var(--tt-clr-pr-1);
+        color: #fff;
+    }
+
+    @media #{$xs} {
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+    }
+}
+
+
+// the round social icons of the team cards: 40px, white
+.tt-social-btn-1 {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    font-size: 16px;
+    line-height: 1;
+    color: var(--tt-clr-h-1);
+    transition: var(--tt-cube-1);
+
+    &:hover {
+        background: var(--tt-clr-pr-1);
+        color: #fff;
+    }
+}
+
+// the menu button of the header: a 48px white box with a light grey line
+.tt-offcanvas-btn-1 {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: 1px solid rgb(0 0 0 / 12%);
+    border-radius: 12px;
+    background: #fff;
+    font-size: 18px;
+    line-height: 1;
+    color: var(--tt-clr-h-1);
+    transition: var(--tt-cube-1);
+
+    &:hover {
+        border-color: var(--tt-clr-pr-1);
+        background: var(--tt-clr-pr-1);
+        color: #fff;
+    }
+}
+
+
+// the search of the header: a 20px icon in ink and the "Search..." text at 40%
+.tt-search-btn-1 {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+    background: none;
+    font-family: var(--tt-font-1);
+    font-size: 16px;
+    line-height: 1.5;
+    white-space: nowrap;
+    color: var(--tt-clr-h-1);
+    transition: var(--tt-cube-1);
+
+    .icon {
+        display: block;
+        flex: none;
+    }
+
+    .text {
+        color: rgb(10 10 10 / 40%);
+        transition: var(--tt-cube-1);
+    }
+
+    &:hover {
+        color: var(--tt-clr-pr-1);
+
+        .text {
+            color: var(--tt-clr-pr-1);
+        }
+    }
+}
+
+/*
+    button-end
+*/
