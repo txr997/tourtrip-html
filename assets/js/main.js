@@ -721,6 +721,78 @@ function ttPackage1Slider() {
 
 
 /*
+	cta-1 — on scroll: the video settles from a zoom, the title lines rise, the plane picture lands, then the text and the form come in
+*/
+function ttCta1Intro() {
+
+	var area = document.querySelector(".tt-cta-1-area");
+	if (!area || prefersReducedMotion()) return;
+
+	var video = area.querySelector(".tt-cta-1-video video");
+	var lines = area.querySelectorAll(".tt-cta-1-line");
+	var pill = area.querySelector(".tt-cta-1-pill");
+	var text = area.querySelector(".tt-cta-1-text");
+	var field = area.querySelector(".tt-cta-1-field");
+	var btn = area.querySelector(".tt-cta-1-btn");
+	var btnIcon = area.querySelector(".tt-cta-1-btn .icon");
+
+	// the field and the button have a css transition (hover): off while they come in, or GSAP reads a half-way value
+	var moved = [field, btn, btnIcon];
+	gsap.set(moved, { transition: "none" });
+
+	var tl = gsap.timeline({
+		defaults: { ease: "power3.out" },
+		scrollTrigger: { trigger: area, start: "top 65%", once: true },
+		onComplete: function () {
+			gsap.set(moved, { clearProps: "transition" });
+		}
+	});
+
+	tl.from(video, { scale: 1.15, duration: 2.6, ease: "power2.out", clearProps: "transform" }, 0)
+		.from(lines, { y: 48, opacity: 0, duration: 1, stagger: .15, clearProps: "transform,opacity" }, .1)
+		.from(pill, { scale: 0, rotation: -25, duration: 1, ease: "back.out(1.6)", clearProps: "transform" }, .35)
+		.from(text, { y: 24, opacity: 0, duration: .9, clearProps: "transform,opacity" }, .6)
+		.from(field, { x: -40, opacity: 0, duration: .9, clearProps: "transform,opacity" }, .8)
+		.from(btn, { x: 40, opacity: 0, duration: .9, clearProps: "transform,opacity" }, .9)
+		.from(btnIcon, { x: -14, opacity: 0, duration: .7, clearProps: "transform,opacity" }, 1.4);
+}
+
+
+/*
+	foot-1 — on scroll: a plane flies over the big word, a dotted route grows behind it and the word shows in its wake
+*/
+function ttFoot1Intro() {
+
+	var wrap = document.querySelector(".tt-foot-1-word-wrap");
+	if (!wrap || prefersReducedMotion()) return;
+
+	var word = wrap.querySelector(".tt-foot-1-word");
+	var plane = wrap.querySelector(".tt-foot-1-plane");
+	var trail = wrap.querySelector(".tt-foot-1-trail");
+
+	// the word, the plane and the route share one duration and one ease, so the edge of the word is always at the plane
+	var fly = { duration: 2.2, ease: "power2.inOut" };
+
+	gsap.set(word, { clipPath: "inset(-5% 100% -5% 0)" });
+	gsap.set(plane, { xPercent: -50 });
+
+	gsap.timeline({
+		scrollTrigger: { trigger: wrap, start: "top 92%", once: true },
+		onComplete: function () {
+			gsap.set(word, { clearProps: "clipPath" });
+		}
+	})
+		.set([plane, trail], { opacity: 1 })
+		.fromTo(plane, { x: 0 }, Object.assign({ x: function () { return wrap.offsetWidth; } }, fly), 0)
+		.fromTo(trail, { scaleX: 0 }, Object.assign({ scaleX: 1 }, fly), 0)
+		.to(word, Object.assign({ clipPath: "inset(-5% 0% -5% 0)" }, fly), 0)
+		// the plane flies on and out, the route fades
+		.to(plane, { x: function () { return wrap.offsetWidth + 160; }, opacity: 0, duration: .7, ease: "power1.in" }, 2.2)
+		.to(trail, { opacity: 0, duration: .9, ease: "power1.out" }, 2.3);
+}
+
+
+/*
 	testimonial-1 — the cards slide to the left, one at a time, and run out at the right of the page; the pointer stops them
 */
 function ttTesti1Slider() {
@@ -2162,6 +2234,8 @@ ttStep1Plane();
 ttStep1Float();
 ttPackage1Slider();
 ttTesti1Slider();
+ttCta1Intro();
+ttFoot1Intro();
 agHero2Slider();
 agHero2Intro();
 agHero3Intro();

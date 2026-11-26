@@ -702,6 +702,34 @@ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
 }
 
 
+// wa_title_fly — a section title takes off word by word, like a plane leaving the runway; plays once on scroll
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+	gsap.utils.toArray(".wa_title_fly").forEach(function (waTitleFly) {
+		const waTitleFlySplit = new SplitText(waTitleFly, { type: "words", wordsClass: "wa-fly-word" });
+
+		gsap.from(waTitleFlySplit.words, {
+			x: -48,
+			y: 56,
+			rotation: -7,
+			opacity: 0,
+			transformOrigin: "0% 100%",
+			duration: 1.1,
+			stagger: 0.07,
+			ease: "power3.out",
+			scrollTrigger: {
+				trigger: waTitleFly,
+				start: "top 88%",
+				once: true,
+			},
+			// the plain text comes back, so a resize re-wraps it
+			onComplete: function () {
+				waTitleFlySplit.revert();
+			},
+		});
+	});
+}
+
+
 // wa_parallax_elm
 if($(".wa_parallax_elm").length) {
 	document.addEventListener("mousemove", wa_parallax_handler);
