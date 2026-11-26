@@ -198,8 +198,8 @@ function ttHero1Intro() {
 	drift(plane, { yPercent: -10, duration: 2.6 });
 	drift(glider, { yPercent: -7, xPercent: 4, duration: 3.4 });
 	drift(balloon, { yPercent: -8, duration: 3 });
-	drift(clouds, { xPercent: 1.5, duration: 6 });
-	drift(bgCloud, { xPercent: -3, duration: 7 });
+	drift(clouds, { xPercent: 1.5, duration: 3 });
+	drift(bgCloud, { xPercent: -3, duration: 4 });
 
 	ttHero1First = tl;
 }
@@ -507,6 +507,34 @@ function ttChoose1Scroll() {
 
 
 /*
+	choose-1 — the route with the map and the suitcase drifts for ever; it runs only while it is on the screen (it is hidden under 1200)
+*/
+function ttChoose1Float() {
+
+	var shape = document.querySelector(".tt-choose-1-shape");
+	if (!shape || prefersReducedMotion()) return;
+
+	gsap.matchMedia().add("(min-width: 1200px)", function () {
+		// three different lengths, so it never repeats the same figure
+		var tweens = [
+			gsap.to(shape, { y: -16, duration: 3.2, ease: "sine.inOut", repeat: -1, yoyo: true, paused: true }),
+			gsap.to(shape, { x: 12, duration: 4.4, ease: "sine.inOut", repeat: -1, yoyo: true, paused: true }),
+			gsap.to(shape, { rotation: 2, duration: 3.8, ease: "sine.inOut", repeat: -1, yoyo: true, paused: true })
+		];
+
+		ScrollTrigger.create({
+			trigger: shape,
+			start: "top bottom",
+			end: "bottom top",
+			onToggle: function (self) {
+				tweens.forEach(function (t) { self.isActive ? t.play() : t.pause(); });
+			}
+		});
+	});
+}
+
+
+/*
 	category-1 — the cards slide with the active one in the middle (the shadow), edge to edge of the page; the arrows loop it
 */
 function ttCat1Slider() {
@@ -793,28 +821,25 @@ function ttFoot1Intro() {
 
 
 /*
-	testimonial-1 — the cards slide to the left, one at a time, and run out at the right of the page; the pointer stops them
+	testimonial-1 — a marquee: the row is doubled (the copies are hidden from the screen readers) and runs left at 60px a second, the pointer stops it (css)
 */
-function ttTesti1Slider() {
+function ttTesti1Marquee() {
 
-	var wrapper = document.querySelector(".tt-testi-1-slider .swiper-wrapper");
-	if (!wrapper) return;
+	var track = document.querySelector(".tt-testi-1-track");
+	if (!track) return;
 
-	// six cards are too few for a loop on a wide page (Swiper wants the cards in view and one more): the row is doubled, the copies are hidden from the screen readers and the tab key
-	Array.prototype.slice.call(wrapper.children).forEach(function (slide) {
+	Array.prototype.slice.call(track.children).forEach(function (slide) {
 		var copy = slide.cloneNode(true);
 		copy.setAttribute("aria-hidden", "true");
-		wrapper.appendChild(copy);
+		track.appendChild(copy);
 	});
 
-	new Swiper(".tt-testi-1-slider", {
-		loop: true,
-		speed: 700,
-		spaceBetween: 16,
-		slidesPerView: "auto",
-		grabCursor: true,
-		autoplay: { delay: 3500, disableOnInteraction: false, pauseOnMouseEnter: true }
-	});
+	// half of the track is one full row; images are measured after they are loaded
+	var speed = function () {
+		track.style.setProperty("--tt-testi-time", (track.scrollWidth / 2 / 60).toFixed(1) + "s");
+	};
+	speed();
+	window.addEventListener("load", speed);
 }
 
 
@@ -2227,13 +2252,14 @@ ttAbout1Float();
 ttAbout1Avatars();
 ttTour1Float();
 ttChoose1Scroll();
+ttChoose1Float();
 ttCat1Slider();
 ttTeam1Drop();
 ttStep1Pin();
 ttStep1Plane();
 ttStep1Float();
 ttPackage1Slider();
-ttTesti1Slider();
+ttTesti1Marquee();
 ttCta1Intro();
 ttFoot1Intro();
 agHero2Slider();

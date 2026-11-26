@@ -143,41 +143,37 @@
         }
     }
 
-    // a glass plate (white at 80%, a soft shadow) with the photo 8px inside it; the plate is 340 x 416 in the design and keeps that shape
+    // a glass plate (white at 80%) with the photo 8px inside it, both in the barrel shape of the design (svg masks, 340 x 416 and 324 x 400);
+    // the shadow is a filter on the card, because a mask would clip a box-shadow
     &-card {
-        --tt-desti-r: 84px;
+        position: relative;
         display: block;
         aspect-ratio: 340 / 416;
         padding: 8px;
-        border-radius: var(--tt-desti-r);
-        background: rgb(255 255 255 / 80%);
-        box-shadow: 0 0 28px rgb(0 0 0 / 12%);
-
-        @media #{$xl} {
-            --tt-desti-r: 72px;
-        }
-
-        @media #{$lg} {
-            --tt-desti-r: 64px;
-        }
-
-        @media #{$md,$sm} {
-            --tt-desti-r: 60px;
-        }
-
-        @media #{$xs} {
-            --tt-desti-r: 56px;
-        }
+        filter: drop-shadow(0 0 28px rgb(0 0 0 / 12%));
 
         &:hover .tt-desti-1-img {
             transform: scale(1.06);
         }
     }
 
+    &-plate,
+    &-photo {
+        -webkit-mask-size: 100% 100%;
+        mask-size: 100% 100%;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+    }
+
+    &-plate {
+        position: absolute;
+        inset: 0;
+        background: rgb(255 255 255 / 80%);
+    }
+
     &-photo {
         position: relative;
         height: 100%;
-        border-radius: calc(var(--tt-desti-r) - 4px);
     }
 
     &-img {
@@ -210,7 +206,7 @@
     }
 
     &-name {
-        letter-spacing: -0.01em;
+        letter-spacing: -1px;
     }
 
     &-count {

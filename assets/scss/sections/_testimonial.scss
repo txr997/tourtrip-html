@@ -210,24 +210,41 @@
         background: radial-gradient(circle, #fff 0%, #0f88e0 100%);
     }
 
-    // the window of the cards starts at the edge of the rating card (the 16px of the gap is its room for the glow) and runs out at the right of the page;
+    // the window of the cards starts 16px (the row gap) after the rating card, so the cards never run under it, and runs out at the right of the page;
     // the room above and under it is for the glow of the card under the pointer
     &-slider {
+        overflow: hidden;
         flex: 1;
         min-width: 0;
-        margin: -20px 0 -50px -16px;
-        padding: 20px 0 50px 16px;
+        margin: -20px 0 -50px;
+        padding: 20px 0 50px;
 
         @media #{$lg,$md,$sm,$xs} {
             flex: none;
             width: 100%;
-            margin-left: 0;
         }
     }
 
+    // the row runs left for ever: main.js doubles it and sets --tt-testi-time (half the row at 60px a second); the pointer stops it
+    &-track {
+        display: flex;
+        width: max-content;
+        animation: tt-testi-run var(--tt-testi-time, 40s) linear infinite;
+
+        @media (prefers-reduced-motion: reduce) {
+            animation: none;
+        }
+    }
+
+    &-slider:hover &-track {
+        animation-play-state: paused;
+    }
+
+    // the 16px between the cards is each card's right margin, so the loop has no seam
     &-slide {
+        flex: none;
         width: 389px;
-        height: auto;
+        margin-right: 16px;
 
         @media #{$xs} {
             width: min(340px, 86vw);
@@ -319,6 +336,12 @@
         line-height: 1;
         color: #fff;
         filter: drop-shadow(0 1px 3px rgb(0 0 0 / 35%));
+    }
+}
+
+@keyframes tt-testi-run {
+    to {
+        transform: translateX(-50%);
     }
 }
 /*

@@ -93,14 +93,9 @@
         @media #{$xs} {
             width: 300px;
         }
-
-        // the card in the middle has the shadow
-        &.swiper-slide-active .tt-cat-1-card {
-            box-shadow: 9px 9px 28px rgb(0 0 0 / 20%);
-        }
     }
 
-    // 380 x 152: the photo 120 and the text 24 beside it
+    // 380 x 152: the photo 120 and the text 24 beside it; the shadow only on hover
     &-card {
         display: flex;
         align-items: center;
