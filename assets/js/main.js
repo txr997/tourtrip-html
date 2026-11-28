@@ -319,6 +319,126 @@ function ttDesti1Slider() {
 
 
 /*
+	destination-2 — the plane flies along the dashed line for ever, turning with it (the line is the one of the markup, in its 1920 x 945 box)
+*/
+function ttDesti2Plane() {
+
+	var area = document.querySelector(".tt-desti-2-area");
+	var path = area && area.querySelector(".tt-desti-2-route-path");
+	var plane = area && area.querySelector(".tt-desti-2-plane");
+	if (!path || !plane || prefersReducedMotion()) return;
+
+	var length = path.getTotalLength();
+	var run = { p: 0 };
+
+	gsap.set(plane, { xPercent: -50, yPercent: -50 });
+
+	// the line is drawn from the right edge to the left one, the plane goes the other way: up from the left foot, over the arch, down to the right
+	function fly() {
+		var s = length * (1 - run.p);
+		var at = path.getPointAtLength(s);
+		var ahead = path.getPointAtLength(Math.max(s - 2, 0));
+
+		gsap.set(plane, {
+			left: (at.x / 1920 * 100) + "%",
+			top: (at.y / 945 * 100) + "%",
+			rotation: Math.atan2(ahead.y - at.y, ahead.x - at.x) * 180 / Math.PI,
+			// soft in and out at the ends of the line
+			opacity: Math.min(run.p / .03, (1 - run.p) / .03, 1)
+		});
+	}
+
+	fly();
+
+	var tween = gsap.to(run, { p: 1, duration: 30, ease: "none", repeat: -1, paused: true, onUpdate: fly });
+
+	// it flies only while the section is on the screen
+	var trigger = ScrollTrigger.create({
+		trigger: area,
+		start: "top bottom",
+		end: "bottom top",
+		onToggle: function (self) {
+			tween.paused(!self.isActive);
+		}
+	});
+
+	tween.paused(!trigger.isActive);
+}
+
+
+/*
+	destination-2 — the cards slide and loop, autoplay and drag; each card is scaled, moved and leant by its distance (p) from the middle, so at rest
+	the five look as in the design (380 / 268 / 200 wide, the sides leant 18deg), and in between they flow into each other
+*/
+function ttDesti2Slider() {
+
+	if (!document.querySelector(".tt-desti-2-slider .swiper-wrapper")) return;
+
+	// the design, in the middle card widths (380): scale at 1 and 2 places away, centre of the card at 1 and 2 places away
+	var S1 = .7385, S2 = .5518, X1 = .9079, X2 = 1.5789, LEAN = 18;
+
+	function lerp(a, b, t) {
+		return a + (b - a) * t;
+	}
+
+	function scaleAt(a) {
+		return a <= 1 ? lerp(1, S1, a) : a <= 2 ? lerp(S1, S2, a - 1) : Math.max(S2 - (a - 2) * .2, .3);
+	}
+
+	function centreAt(a) {
+		return a <= 1 ? X1 * a : a <= 2 ? lerp(X1, X2, a - 1) : X2 + (X2 - X1) * (a - 2);
+	}
+
+	function layout(swiper) {
+
+		// phones show the middle card and a peek of the next ones
+		var limit = window.innerWidth < 768 ? 1.6 : 2.6;
+
+		swiper.slides.forEach(function (slide) {
+			var p = -slide.progress;
+			var a = Math.abs(p);
+			var w = slide.offsetWidth;
+			var dir = p < 0 ? -1 : 1;
+			var lean = LEAN * Math.min(a, 1);
+			var s = scaleAt(a);
+
+			// the near side of a leant card is bigger, which moves its middle outwards: 12px of 380 at 18deg, taken back
+			var shift = .0318 * s * (lean / LEAN);
+			var x = dir * w * (centreAt(a) - a - shift);
+
+			slide.style.transform = "translate3d(" + x.toFixed(2) + "px,0,0) scale(" + s.toFixed(4) + ") perspective(" + (w * 2.316).toFixed(1) + "px) rotateY(" + (-dir * lean).toFixed(2) + "deg)";
+			slide.style.opacity = Math.max(0, Math.min((limit - a) / .6, 1)).toFixed(3);
+			slide.style.zIndex = Math.round(100 - a * 10);
+			slide.style.setProperty("--near", Math.max(0, 1 - a * 2).toFixed(3));
+		});
+	}
+
+	new Swiper(".tt-desti-2-slider", {
+		loop: true,
+		initialSlide: 2,
+		centeredSlides: true,
+		slidesPerView: "auto",
+		speed: 700,
+		grabCursor: true,
+		// keeps going after a drag, stops while the pointer is on it
+		autoplay: { delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true },
+		watchSlidesProgress: true,
+		on: {
+			init: layout,
+			setTranslate: layout,
+			resize: layout,
+			// the cards move with the same time as the wrapper
+			setTransition: function (swiper, duration) {
+				swiper.slides.forEach(function (slide) {
+					slide.style.transitionDuration = duration + "ms";
+				});
+			}
+		}
+	});
+}
+
+
+/*
 	destination-1 — the two lines beside the button slide in whole (dots too) from the page edges when they come into view
 */
 function ttDesti1Lines() {
@@ -2246,6 +2366,8 @@ ttHero1Booking();
 ttDesti1Slider();
 ttDesti1Plane();
 ttDesti1Lines();
+ttDesti2Slider();
+ttDesti2Plane();
 ttAbout1Drift();
 ttAbout1Photos();
 ttAbout1Float();

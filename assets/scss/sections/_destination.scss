@@ -313,3 +313,268 @@
 /*
     tt-desti-1-end
 */
+
+
+/*
+    tt-desti-2-start
+*/
+.tt-desti-2 {
+    // 1920 design, 1104 high: 132 on top, the head 144, 48, the cards 460, 48, the text 56, 32, the button 52, 132 below
+    &-area {
+        position: relative;
+        padding: 132px 0;
+        background: #fff;
+
+        @media #{$xxl} {
+            padding: 120px 0;
+        }
+
+        @media #{$xl} {
+            padding: 108px 0;
+        }
+
+        @media #{$lg} {
+            padding: 96px 0;
+        }
+
+        @media #{$md} {
+            padding: 80px 0;
+        }
+
+        @media #{$xs} {
+            padding: 64px 0;
+        }
+    }
+
+    // the dashed path, 1920 x 945 in the design: it scales with the width and runs past both edges
+    &-route {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        aspect-ratio: 1920 / 945;
+        pointer-events: none;
+
+        @media #{$xs} {
+            display: none;
+        }
+    }
+
+    &-route-line {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+    }
+
+    &-route-path {
+        fill: none;
+        stroke: var(--tt-clr-h-1);
+        stroke-opacity: 0.2;
+        stroke-width: 1;
+        stroke-dasharray: 5 5;
+        vector-effect: non-scaling-stroke;
+    }
+
+    // the stops (a white disc with an orange centre) sit on the path, in % of the 1920 x 945 box
+    &-stop {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: radial-gradient(circle, var(--tt-clr-pr-1) 0 3px, #fff 3.5px);
+        box-shadow: 0 4px 4px rgb(0 0 0 / 16%);
+        transform: translate(-50%, -50%);
+
+        &.is-1 {
+            top: 36.08%;
+            left: 6.09%;
+        }
+
+        &.is-2 {
+            top: 28.36%;
+            left: 27.34%;
+        }
+
+        &.is-3 {
+            top: 82.96%;
+            left: 87.29%;
+        }
+    }
+
+    // the 30 x 28 icon; main.js flies it along the path and takes over left, top and the turn
+    &-plane {
+        position: absolute;
+        top: 48.9%;
+        left: 1.38%;
+        width: 30px;
+        height: 28px;
+    }
+
+    // the balloon: 125 x 176 at 1535 / 94, it would sit on the title under 1200
+    &-balloon {
+        position: absolute;
+        top: 94px;
+        left: 79.95%;
+        width: 6.51%;
+        aspect-ratio: 125 / 176;
+        pointer-events: none;
+
+        @media #{$lg,$md,$sm,$xs} {
+            display: none;
+        }
+    }
+
+    &-head {
+        position: relative;
+        z-index: 1;
+        max-width: 784px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    // the script line is a block, so it is not set on a line box (28px) but takes its 24px
+    &-head .tt-subtitle-1 {
+        display: block;
+    }
+
+    &-title {
+        margin-top: 12px;
+    }
+
+    // the middle card is 380 x 460 (27.14% of 1400), main.js scales and leans the others by their place; nothing clips the slider, the section does
+    &-slider {
+        position: relative;
+        z-index: 1;
+        margin-top: 48px;
+        overflow: visible;
+
+        .swiper-slide {
+            width: 27.1429%;
+            aspect-ratio: 380 / 460;
+            transition-property: transform, opacity;
+            transition-timing-function: ease;
+
+            @media #{$xs} {
+                width: 60%;
+            }
+
+            @media (max-width: 575px) {
+                width: 70%;
+            }
+        }
+
+        @media #{$xs} {
+            margin-top: 32px;
+        }
+    }
+
+    &-card {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    // the link is the name; its ::after covers the photo (the nearest positioned box), so the whole card is the click
+    &-link {
+        color: inherit;
+        transition: var(--tt-cube-1);
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+        }
+
+        &:hover {
+            color: var(--tt-clr-pr-1);
+        }
+    }
+
+    // the photo and the shade are behind (z-index -1), the text is in the flow at the foot, so it is not a positioned box
+    &-photo {
+        position: relative;
+        isolation: isolate;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        width: 100%;
+        height: 100%;
+        padding-bottom: 28px;
+        border-radius: 20px;
+    }
+
+    &-img {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+    }
+
+    // 213 high at the foot of the middle card, black to clear
+    &-shade {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        height: 46.3%;
+        background: linear-gradient(180deg, rgb(10 10 10 / 0%) 0%, rgb(10 10 10 / 85%) 100%);
+        opacity: var(--near, 1);
+        transition: opacity 0.4s;
+    }
+
+    // the name 28/32 and the count 18/24, 28 above the foot of the card
+    &-info {
+        text-align: center;
+        opacity: var(--near, 1);
+        transition: opacity 0.4s;
+    }
+
+    &-name {
+        font-size: 28px;
+        line-height: 32px;
+        letter-spacing: -0.01em;
+
+        @media #{$xs} {
+            font-size: 24px;
+            line-height: 28px;
+        }
+    }
+
+    &-count {
+        margin-top: 6px;
+        line-height: 24px;
+        color: rgb(255 255 255 / 70%);
+
+        .num {
+            font-weight: 600;
+            color: #fff;
+        }
+    }
+
+    &-foot {
+        position: relative;
+        z-index: 1;
+        margin-top: 48px;
+        text-align: center;
+
+        @media #{$xs} {
+            margin-top: 32px;
+        }
+    }
+
+    &-text {
+        max-width: 826px;
+        margin: 0 auto;
+    }
+
+    &-btn {
+        margin-top: 32px;
+    }
+}
+/*
+    tt-desti-2-end
+*/

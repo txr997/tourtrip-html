@@ -141,23 +141,37 @@
 }
 
 
-// home 2: the same pill in blue, 52px high, the circle is the light grey of the page
+// home 2: 221 x 52, a blue pill joined to a ring (the shape is a mask) with the arrow on the light grey of the page
 .tt-pr-btn-2 {
+    position: relative;
     display: inline-flex;
     align-items: center;
     gap: 28px;
     flex: none;
     height: 52px;
     padding: 4px 4px 4px 24px;
-    border-radius: 100px;
-    background: var(--tt-clr-sd-1);
     font-family: var(--tt-font-2);
     font-size: 16px;
     font-weight: 600;
     line-height: 1.625;
     white-space: nowrap;
     color: #fff;
-    transition: var(--tt-cube-1);
+
+    .shape {
+        position: absolute;
+        inset: 0;
+        background: var(--tt-clr-sd-1);
+        -webkit-mask-size: 100% 100%;
+        mask-size: 100% 100%;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        transition: var(--tt-cube-1);
+    }
+
+    .text,
+    .icon {
+        position: relative;
+    }
 
     .icon {
         display: flex;
@@ -170,7 +184,7 @@
         background: var(--tt-clr-bg-2);
         font-size: 20px;
         line-height: 1;
-        color: var(--tt-clr-h-1);
+        color: var(--tt-clr-sd-1);
         transition: var(--tt-cube-1);
 
         i {
@@ -179,19 +193,17 @@
     }
 
     &:hover {
-        background: var(--tt-clr-h-1);
         color: #fff;
+
+        .shape {
+            background: var(--tt-clr-h-1);
+        }
 
         .icon {
             background: var(--tt-clr-pr-1);
             color: #fff;
             transform: rotate(45deg);
         }
-    }
-
-    @media #{$xs} {
-        gap: 20px;
-        padding-left: 20px;
     }
 }
 
@@ -560,6 +572,37 @@
         .text {
             color: var(--tt-clr-pr-1);
         }
+    }
+}
+
+// the search and the menu button of the home 2 header: a 48px glass circle, white icon
+.tt-search-btn-2,
+.tt-offcanvas-btn-2 {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: 1px solid rgb(255 255 255 / 32%);
+    border-radius: 50%;
+    background: rgb(255 255 255 / 12%);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    font-size: 18px;
+    line-height: 1;
+    color: #fff;
+    transition: var(--tt-cube-1);
+
+    .icon {
+        display: block;
+    }
+
+    &:hover {
+        border-color: var(--tt-clr-sd-1);
+        background: var(--tt-clr-sd-1);
+        color: #fff;
     }
 }
 

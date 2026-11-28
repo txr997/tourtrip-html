@@ -520,3 +520,291 @@
 /*
     tt-hero-1-end
 */
+
+
+/*
+    tt-hero-2-start
+*/
+
+.tt-hero-2 {
+    // 1920 design, 899 high: 188 on top + the text 412 + 82 + the booking card 159 + 58 below
+    &-area {
+        position: relative;
+        padding: 188px 0 58px;
+        background: var(--tt-clr-bg-2);
+        z-index: 2;
+
+        @media #{$xxl} {
+            padding-top: 170px;
+        }
+
+        @media #{$xl} {
+            padding-top: 160px;
+        }
+
+        @media #{$lg} {
+            padding-top: 150px;
+        }
+
+        // the media goes under the card, the card keeps its place
+        @media #{$md,$sm,$xs} {
+            display: flex;
+            flex-direction: column;
+            padding: 130px 0 0;
+
+            > .container {
+                width: 100%;
+            }
+        }
+
+        @media #{$xs} {
+            padding-top: 112px;
+        }
+    }
+
+    // the doodles of the left edge: 298 x 800, 48 out of the page and 11 above it
+    &-bg-shape {
+        position: absolute;
+        top: -1.22%;
+        left: -2.5%;
+        z-index: 0;
+        width: 15.52%;
+        aspect-ratio: 298 / 800;
+        pointer-events: none;
+
+        @media #{$xs} {
+            display: none;
+        }
+    }
+
+    // the white wave at the foot, 1920 x 202
+    &-wave {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 0;
+        width: 100%;
+        aspect-ratio: 1920 / 202;
+        pointer-events: none;
+
+        @media #{$md,$sm,$xs} {
+            display: none;
+        }
+    }
+
+    // the right 1052 of the hero (54.79%), full height; under 992 it is a block of its own below the card
+    &-media {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1;
+        width: 54.79%;
+        height: 100%;
+
+        @media #{$md,$sm,$xs} {
+            position: relative;
+            order: 2;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1052 / 899;
+            margin-top: 40px;
+        }
+    }
+
+    // the arch of the design; cqw units follow its width
+    &-photo {
+        position: absolute;
+        inset: 0;
+        container-type: inline-size;
+        -webkit-mask-size: 100% 100%;
+        mask-size: 100% 100%;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+    }
+
+    // 3% bigger, from the foot: the edge of the clip stays out of the arch
+    &-video {
+        position: absolute;
+        inset: 0;
+        transform: scale(1.03);
+        transform-origin: 50% 100%;
+    }
+
+    // 200px caps behind the travelers, centred on the 947 box of the design (28 to 975 of 1052); white fading out downwards.
+    // The box is wider than the text, or the gradient (clipped to the box) cuts its end
+    &-word {
+        position: absolute;
+        top: 61.7%;
+        left: 0;
+        width: 95.4%;
+        font-family: var(--tt-font-2);
+        font-size: 19.01cqw;
+        font-weight: 600;
+        line-height: 0.72;
+        letter-spacing: -0.38cqw;
+        text-align: center;
+        text-transform: uppercase;
+        white-space: nowrap;
+        background: linear-gradient(180deg, rgb(255 255 255 / 80%) 0%, rgb(255 255 255 / 4%) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        pointer-events: none;
+    }
+
+    &-cloud,
+    &-plane,
+    &-people {
+        position: absolute;
+        pointer-events: none;
+    }
+
+    &-cloud {
+        top: 23.7%;
+        left: 50%;
+        width: 29.09%;
+        aspect-ratio: 306 / 71;
+    }
+
+    &-plane {
+        top: 18.5%;
+        left: 54.09%;
+        width: 19.49%;
+        aspect-ratio: 205 / 136;
+    }
+
+    // 1169 x 564, it starts 136 left of the arch (cut by it) and stands on the bottom edge
+    &-people {
+        bottom: 0;
+        left: -12.93%;
+        width: 111.12%;
+        aspect-ratio: 1169 / 564;
+    }
+
+    // the text: 503 wide
+    &-content {
+        position: relative;
+        z-index: 4;
+        max-width: 503px;
+
+        @media #{$lg} {
+            max-width: 420px;
+        }
+
+        @media #{$md,$sm,$xs} {
+            max-width: none;
+        }
+    }
+
+    &-title {
+        margin: 12px 0 20px;
+    }
+
+    &-btn {
+        margin-top: 32px;
+    }
+
+    // the card of the hero 1, 82 under the text; orange tab and icons, blue search
+    &-booking {
+        z-index: 4;
+        margin-top: 82px;
+
+        @media #{$xxl} {
+            margin-top: 72px;
+        }
+
+        @media #{$xl} {
+            margin-top: 64px;
+        }
+
+        @media #{$lg} {
+            margin-top: 56px;
+        }
+
+        @media #{$md} {
+            margin-top: 48px;
+        }
+
+        @media #{$xs} {
+            margin-top: 40px;
+        }
+
+        .tt-hero-1-tab {
+            .icon {
+                background: var(--tt-clr-pr-1);
+            }
+
+            &:hover {
+                color: var(--tt-clr-pr-1);
+            }
+
+            &:is(.is-active) {
+                background: var(--tt-clr-pr-1);
+                color: #fff;
+
+                .icon {
+                    background: #fff;
+                }
+            }
+        }
+
+        // the tabs sit 273 from the left of the 913 card, a round inner corner on both sides; centred under 992
+        .tt-hero-1-booking-tabs {
+            margin-left: 273px;
+
+            &::after {
+                right: -20px;
+                left: -20px;
+                width: auto;
+                height: 20px;
+                // the first two draw the glass line (6px) round each white corner, where the glass of the tabs and of the card do not reach
+                background:
+                    radial-gradient(circle at 0 0, transparent 14px, rgb(255 255 255 / 40%) 14.5px) left top / 14px 14px no-repeat,
+                    radial-gradient(circle at 100% 0, transparent 14px, rgb(255 255 255 / 40%) 14.5px) right top / 14px 14px no-repeat,
+                    radial-gradient(circle at 0 0, transparent 20px, #fff 20.5px) left / 20px 20px no-repeat,
+                    radial-gradient(circle at 100% 0, transparent 20px, #fff 20.5px) right / 20px 20px no-repeat;
+            }
+
+            @media #{$md,$sm,$xs} {
+                margin: 0 auto;
+            }
+        }
+
+        .tt-hero-1-booking-form {
+            border-radius: 20px;
+
+            &::before {
+                border-radius: 26px;
+            }
+        }
+
+        // the shadow of the design (0 8 28, 12%) follows the glass line round the tabs and the card; the card's is the lower layer
+        .tt-hero-1-booking-tabs::before,
+        .tt-hero-1-booking-form::before {
+            box-shadow: 0 8px 28px rgb(0 0 0 / 12%);
+        }
+
+        .tt-hero-1-booking-form::before {
+            z-index: -2;
+        }
+
+        .tt-hero-1-select-input {
+            &:focus,
+            &.open {
+                border-color: var(--tt-clr-pr-1);
+            }
+        }
+
+        .tt-hero-1-search-btn {
+            background: var(--tt-clr-sd-1);
+
+            &:hover {
+                background: var(--tt-clr-h-1);
+            }
+        }
+    }
+}
+/*
+    tt-hero-2-end
+*/

@@ -173,6 +173,44 @@
 }
 
 
+// home 2 hero title, Manrope medium 64/72; has-blue is the last word, semibold
+.tt-hero-title-2 {
+    font-family: var(--tt-font-2);
+    font-weight: 500;
+    font-size: 64px;
+    line-height: 1.125;
+    letter-spacing: -0.01em;
+    color: var(--tt-clr-h-1);
+    margin-bottom: 0;
+
+    .has-blue {
+        font-weight: 600;
+        color: var(--tt-clr-sd-1);
+    }
+
+    @media #{$xl} {
+        font-size: 58px;
+    }
+
+    @media #{$lg} {
+        font-size: 48px;
+    }
+
+    @media #{$md} {
+        font-size: 48px;
+    }
+
+    @media #{$sm} {
+        font-size: 44px;
+    }
+
+    @media #{$xs} {
+        font-size: 36px;
+        letter-spacing: -0.5px;
+    }
+}
+
+
 // home 3 hero title, Manrope medium 80/84
 .tt-hero-title-3 {
     font-family: var(--tt-font-2);
